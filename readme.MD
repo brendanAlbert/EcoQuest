@@ -4,6 +4,8 @@ ecoQuest is an app to gamify community service and saving the environment!
 
 Users can accept quests to perform tasks to earn badges.
 
+![](/app/src/main/res/drawable/isometric_splash.png)
+
 #### Some quests, ranging from easy to challenging include:
 - 🚯 picking up trash
   - i.e. cigarette butts, plastic cups, lids
