@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EcoQuest</string>
+    <string name="back_bay_quest_chain">Back Bay Quest Chain</string>
+
 </resources>

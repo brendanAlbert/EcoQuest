@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/quest_background_layout"
+    tools:context="edu.orangecoastcollege.cs273.ecoquest.QuestsActivity" >
+
+    <TextView
+        android:id="@+id/backBayQuestChainTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text="@string/back_bay_quest_chain"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textColor="#fff"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:paddingTop="40dp"
+        android:layout_below="@id/backBayQuestChainTextView"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/firstTierQuestIcon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:src="@drawable/egret" />
+
+            <LinearLayout
+                android:id="@+id/secondTierQuestsLinearLayout"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/leftChainSecondTierQuestIcon"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/frog"/>
+
+                <ImageView
+                    android:id="@+id/rightChainSecondTierQuestIcon"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/woodpecker"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/thirdTierQuestsLinearLayout"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/leftChainThirdTierQuestIcon"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/turtle"/>
+
+                <ImageView
+                    android:id="@+id/rightChainThirdTierQuestIcon"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/snail"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
