@@ -6,14 +6,24 @@ package edu.orangecoastcollege.cs273.ecoquest;
 
 public class Badge {
 
+    private long mId;
     private String mName;
     private String mDescription;
     private String mImageName;
 
-    public Badge(String name, String description, String imageName) {
+    public Badge(long id, String name, String description, String imageName) {
+        mId = id;
         mName = name;
         mDescription = description;
         mImageName = imageName;
+    }
+
+    public Badge(String name, String description, String imageName) { this(-1, name, description, imageName); }
+
+    public long getId() { return mId; }
+
+    public void setId(long id) {
+        mId = id;
     }
 
     public String getName() {
