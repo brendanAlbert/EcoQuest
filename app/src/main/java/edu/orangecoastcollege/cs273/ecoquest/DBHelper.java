@@ -24,6 +24,13 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String BADGES_FIELD_DESCRIPTION = "description";
     private static final String BADGES_FIELD_IMAGE_NAME = "image_name";
 
+    // Define the fields (column names) for the Quest table
+    public static final String QUEST_TABLE = "quests";
+    public static final String QUEST_KEY_FIELD_ID = "_id";
+    public static final String QUEST_FIELD_NAME = "name";
+    private static final String QUEST_FIELD_DESCRIPTION = "description";
+    private static final String QUEST_FIELD_IMAGE_NAME = "image_name";
+
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         mContext = context;
@@ -31,12 +38,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
+
+        // Creating Badges Table
         String createQuery = "CREATE TABLE " + BADGES_TABLE + "("
                 + BADGES_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + BADGES_FIELD_NAME + " TEXT, "
                 + BADGES_FIELD_DESCRIPTION + " TEXT, "
                 + BADGES_FIELD_IMAGE_NAME + " TEXT" + ")";
         database.execSQL(createQuery);
+
+        // Creating Quest Table
+        createQuery = "CREATE TABLE " + QUEST_TABLE + "("
+                + QUEST_KEY_FIELD_ID + "INTEGER PRIMARY KEY, "
+                + QUEST_FIELD_NAME + " TEXT, "
+                + QUEST_FIELD_DESCRIPTION + " TEXT, "
+                + QUEST_FIELD_IMAGE_NAME + " TEXT" + ")";
+        database.execSQL(createQuery);
+
     }
 
     @Override
@@ -65,4 +83,22 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     /* END OF BADGE ADDING CODE*/
+
+
+    /* Start of Quest Code */
+
+    public void addQuest(Quest quest) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(QUEST_FIELD_NAME, quest.getName());
+        values.put(QUEST_FIELD_DESCRIPTION, quest.getDescription());
+        values.put(QUEST_FIELD_IMAGE_NAME, quest.getImageName());
+
+        db.insert(QUEST_TABLE, null, values);
+    }
+
+
+    /* End of Quest Code */
+
 }
