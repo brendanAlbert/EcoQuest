@@ -20,6 +20,10 @@
         </activity>
         <activity android:name=".DashboardActivity">
         </activity>
+        <activity android:name=".BadgeDetailsActivity">
+        </activity>
+        <activity android:name=".LoginSignupActivity">
+        </activity>
     </application>
 
 </manifest>

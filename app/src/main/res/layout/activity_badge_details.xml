@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.orangecoastcollege.cs273.ecoquest.BadgeDetailsActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/badgeImageView"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        app:srcCompat="@drawable/sunset_badge"/>
+
+    <TextView
+        android:id="@+id/badgeTitleTextView"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Sunset badge"/>
+
+    <TextView
+        android:id="@+id/badgeDescriptionTextView"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:text="The sunset badge is earned by completing one of the beach cleanup quests at sunset"/>
+</LinearLayout>
