@@ -41,6 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String USERS_FIELD_USERNAME = "username";
     private static final String USERS_FIELD_POINTS = "points";
     private static final String USERS_FIELD_LEVEL = "level";
+    private static final String USERS_FIELD_HOW_MANY_BADGES = "how_many_badges";
     private static final String USERS_FIELD_PROFILE_PICTURE_NAME = "profile_pic_name";
 
 
@@ -63,6 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + USERS_FIELD_USERNAME + " TEXT, "
                 + USERS_FIELD_POINTS + " INTEGER, "
                 + USERS_FIELD_LEVEL + " INTEGER, "
+                + USERS_FIELD_HOW_MANY_BADGES + " INTEGER, "
                 + USERS_FIELD_PROFILE_PICTURE_NAME + " TEXT " + ")";
         database.execSQL(createQuery);
     }
@@ -153,6 +155,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(USERS_FIELD_USERNAME, user.getUserName());
         values.put(USERS_FIELD_POINTS, user.getPoints());
         values.put(USERS_FIELD_LEVEL, user.getLevel());
+        values.put(USERS_FIELD_HOW_MANY_BADGES, user.getHowManyBadges());
         values.put(USERS_FIELD_PROFILE_PICTURE_NAME, user.getProfilePictureName());
 
         long id = db.insert(USERS_TABLE, null, values);
@@ -162,18 +165,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<User> getMostPointsUserList() {
-        // create a list of users ordered from most points to least points
-        /*
-            SELECT _id, points FROM users ORDER BY points ASC;
-         */
+    public List<User> getUserList() {
         SQLiteDatabase db = this.getReadableDatabase();
-        /*String queryString =
-                "SELECT " + USERS_KEY_FIELD_ID + ", " + USERS_FIELD_POINTS
-                + " FROM " + USERS_TABLE + " ORDER BY " + USERS_FIELD_POINTS;*/
         Cursor cursor = db.query(
                 USERS_TABLE,
-                new String[]{USERS_KEY_FIELD_ID, USERS_FIELD_USERNAME, USERS_FIELD_POINTS, USERS_FIELD_LEVEL, USERS_FIELD_PROFILE_PICTURE_NAME},
+                new String[]{USERS_KEY_FIELD_ID, USERS_FIELD_USERNAME, USERS_FIELD_POINTS, USERS_FIELD_LEVEL, USERS_FIELD_HOW_MANY_BADGES, USERS_FIELD_PROFILE_PICTURE_NAME},
                 null, null,
                 null, null, null, null);
 
@@ -182,7 +178,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                User user = new User(cursor.getLong(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getString(4));
+                User user = new User(cursor.getLong(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getString(5));
                 mMostPointsUserList.add(user);
             } while (cursor.moveToNext());
         }
@@ -211,15 +207,16 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] fields = line.split(",");
-                if (fields.length != 4) {
+                if (fields.length != 5) {
                     Log.d("ecoQuest", "Skipping Bad CSV Row: " + Arrays.toString(fields));
                 }
                 else {
                     String userName = fields[0].trim();
                     int points = Integer.parseInt(fields[1].trim());
                     int level = Integer.parseInt(fields[2].trim());
-                    String profilePictureName = fields[3].trim();
-                    addUser( new User(userName, points, level, profilePictureName));
+                    int badges = Integer.parseInt(fields[3].trim());
+                    String profilePictureName = fields[4].trim();
+                    addUser( new User(userName, points, level, badges, profilePictureName));
                 }
             }
         } catch (IOException e) {

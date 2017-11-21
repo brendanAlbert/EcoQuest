@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by brendantyleralbert on 11/19/17.
@@ -24,14 +27,18 @@ import java.util.List;
 
 public class LeaderboardListAdapter extends ArrayAdapter<User> {
     private Context mContext;
+    private int mRank;
     private int mResource;
     private List<User> mAllUsersList = new ArrayList<>();
+    private String mStatToTrack;
 
-    public LeaderboardListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<User> allUsersList) {
+    public LeaderboardListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<User> allUsersList, String statToTrack) {
         super(context, resource, allUsersList);
         mContext = context;
+        mRank = 1;
         mResource = resource;
         mAllUsersList = allUsersList;
+        mStatToTrack = statToTrack;
     }
 
     @NonNull
@@ -48,13 +55,20 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
 
         User user = mAllUsersList.get(position);
 
-        rankTextView.setText(String.valueOf(user.getId()));
+        Log.i("adapter: rank", String.valueOf(mRank));
+
+        rankTextView.setText(String.valueOf(mRank++));
         userImageView.setImageURI(getUriFromResource(mContext,R.drawable.frog));
         userNameTextView.setText(user.getUserName());
-        userPointsLevelsBadgesTextView.setText(String.valueOf(user.getPoints()));
+
+        if (mStatToTrack.equals("points"))
+            userPointsLevelsBadgesTextView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(user.getPoints())));
+        else if (mStatToTrack.equals("levels"))
+            userPointsLevelsBadgesTextView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(user.getLevel())));
+        else if (mStatToTrack.equals("badges"))
+            userPointsLevelsBadgesTextView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(user.getHowManyBadges())));
 
         //userTitleTextView.setText(user.getTitle());
-
 
         return listItemView;
     }

@@ -38,19 +38,22 @@
             android:layout_margin="10dp"
             android:layout_height="wrap_content"
             android:text="levels"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="displayLevelsLeaderboard"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_margin="10dp"
             android:layout_height="wrap_content"
             android:text="badges"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="displayBadgesLeaderboard"/>
 
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/pointsLevelsBadgesRankingMessageTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="26sp"

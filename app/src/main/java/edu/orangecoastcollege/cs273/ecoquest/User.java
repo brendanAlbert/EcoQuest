@@ -10,17 +10,19 @@ public class User {
     private String mUserName;
     private int mLevel;
     private int mPoints;
+    private int mHowManyBadges;
     private String mProfilePictureName;
 
-    public User(long id, String userName, int level, int points, String profilePictureName) {
+    public User(long id, String userName, int level, int points, int howManyBadges, String profilePictureName) {
         mId = id;
         mUserName = userName;
         mLevel = level;
         mPoints = points;
+        mHowManyBadges = howManyBadges;
         mProfilePictureName = profilePictureName;
     }
 
-    public User(String userName, int level, int points, String profilePictureName)  { this(-1, userName, level, points, profilePictureName); }
+    public User(String userName, int level, int points, int howManyBadges, String profilePictureName)  { this(-1, userName, level, points, howManyBadges, profilePictureName); }
 
     public long getId() {
         return mId;
@@ -58,9 +60,11 @@ public class User {
         return mProfilePictureName;
     }
 
-    public void setProfilePictureName(String profilePictureName) {
-        mProfilePictureName = profilePictureName;
-    }
+    public void setProfilePictureName(String profilePictureName) { mProfilePictureName = profilePictureName; }
+
+    public int getHowManyBadges() { return mHowManyBadges; }
+
+    public void setHowManyBadges(int howManyBadges) { mHowManyBadges = howManyBadges; }
 
     @Override
     public String toString() {
