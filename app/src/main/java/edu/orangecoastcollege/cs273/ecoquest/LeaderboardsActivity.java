@@ -15,7 +15,9 @@ public class LeaderboardsActivity extends AppCompatActivity {
 
     private DBHelper db;
 
-    private ArrayList<Long> rankArrayList;
+    private ArrayList<Long> pointsRankArrayList;
+    private ArrayList<Long> levelsRankArrayList;
+    private ArrayList<Long> badgesRankArrayList;
 
     private List<User> mostPointsUserList = null;
     private List<User> mostLevelsUserList = null;
@@ -50,7 +52,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
                 R.layout.user_leaderboard_list_item,
                 mostPointsUserList,
                 "points",
-                rankArrayList);
+                pointsRankArrayList);
         mLeaderboardListView.setAdapter(mLeaderboardListAdapter);
     }
 
@@ -68,10 +70,10 @@ public class LeaderboardsActivity extends AppCompatActivity {
 
         // we want an array or list which stores a user's rank at the index of their id
         // the users rank is stored at the index of their id
-        rankArrayList = new ArrayList<>(mostPointsUserList.size()+1);
+        pointsRankArrayList = new ArrayList<>(mostPointsUserList.size()+1);
 
         for (User user : mostPointsUserList)
-            rankArrayList.add(user.getId());
+            pointsRankArrayList.add(user.getId());
 
         return mostPointsUserList;
     }
@@ -87,7 +89,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
                 R.layout.user_leaderboard_list_item,
                 mostLevelsUserList,
                 "levels",
-                rankArrayList);
+                levelsRankArrayList);
         mLeaderboardListView.setAdapter(mLeaderboardListAdapter);
 
     }
@@ -104,10 +106,10 @@ public class LeaderboardsActivity extends AppCompatActivity {
             }
         });
 
-        rankArrayList = new ArrayList<>(mostLevelsUserList.size()+1);
+        levelsRankArrayList = new ArrayList<>(mostLevelsUserList.size()+1);
 
         for (User user : mostLevelsUserList)
-            rankArrayList.add(user.getId());
+            levelsRankArrayList.add(user.getId());
 
         return mostLevelsUserList;
     }
@@ -123,7 +125,7 @@ public class LeaderboardsActivity extends AppCompatActivity {
                 R.layout.user_leaderboard_list_item,
                 mostBadgesUserList,
                 "badges",
-                rankArrayList);
+                badgesRankArrayList);
         mLeaderboardListView.setAdapter(mLeaderboardListAdapter);
     }
 
@@ -139,10 +141,10 @@ public class LeaderboardsActivity extends AppCompatActivity {
             }
         });
 
-        rankArrayList = new ArrayList<>(mostBadgesUserList.size()+1);
+        badgesRankArrayList = new ArrayList<>(mostBadgesUserList.size()+1);
 
         for (User user : mostBadgesUserList)
-            rankArrayList.add(user.getId());
+            badgesRankArrayList.add(user.getId());
 
         return mostBadgesUserList;
     }
