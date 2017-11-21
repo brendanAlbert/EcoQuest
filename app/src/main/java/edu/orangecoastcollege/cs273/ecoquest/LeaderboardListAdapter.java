@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +26,15 @@ import java.util.Locale;
 
 public class LeaderboardListAdapter extends ArrayAdapter<User> {
     private Context mContext;
-    private int mRank;
+    private ArrayList<Long> mRankArray;
     private int mResource;
     private List<User> mAllUsersList = new ArrayList<>();
     private String mStatToTrack;
 
-    public LeaderboardListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<User> allUsersList, String statToTrack) {
+    public LeaderboardListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<User> allUsersList, String statToTrack, ArrayList<Long> rankArray) {
         super(context, resource, allUsersList);
         mContext = context;
-        mRank = 1;
+        mRankArray = rankArray;
         mResource = resource;
         mAllUsersList = allUsersList;
         mStatToTrack = statToTrack;
@@ -55,9 +54,8 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
 
         User user = mAllUsersList.get(position);
 
-        Log.i("adapter: rank", String.valueOf(mRank));
-
-        rankTextView.setText(String.valueOf(mRank++));
+        // This set Text is where the rank of the user is determined and set
+        rankTextView.setText(String.valueOf(mRankArray.indexOf(user.getId())+1));
         userImageView.setImageURI(getUriFromResource(mContext,R.drawable.frog));
         userNameTextView.setText(user.getUserName());
 
