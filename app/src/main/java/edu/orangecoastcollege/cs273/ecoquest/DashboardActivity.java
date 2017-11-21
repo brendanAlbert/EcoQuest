@@ -21,4 +21,9 @@ public class DashboardActivity extends AppCompatActivity {
         Intent intent = new Intent(this, QuestsActivity.class);
         startActivity(intent);
     }
+
+    public void viewLeaderboards(View view) {
+        Intent intent = new Intent(this, LeaderboardsActivity.class);
+        startActivity(intent);
+    }
 }

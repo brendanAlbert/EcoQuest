@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".LoginSignupActivity">
         </activity>
+        <activity android:name=".LeaderboardsActivity">
+        </activity>
     </application>
 
 </manifest>
