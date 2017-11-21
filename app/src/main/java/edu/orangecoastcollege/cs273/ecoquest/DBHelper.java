@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context mContext;
 
     // Database version and name
-    public static final String DATABASE_NAME = "ecoQuest";
+    private static final String DATABASE_NAME = "ecoQuest";
     private static final int DATABASE_VERSION = 1;
 
     // Define the fields (column names) for the badges table
@@ -45,6 +45,13 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String USERS_FIELD_PROFILE_PICTURE_NAME = "profile_pic_name";
 
 
+    // Define the fields (column names) for the quest table
+    private static final String QUEST_TABLE = "quests";
+    private static final String QUEST_KEY_FIELD_ID = "_id";
+    private static final String QUEST_FIELD_NAME = "name";
+    private static final String QUEST_FIELD_DESCRIPTION = "description";
+    private static final String QUEST_FIELD_IMAGE_NAME = "image_name";
+
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         mContext = context;
@@ -52,6 +59,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
+
+        // Creating Badge Data Table
         String createQuery = "CREATE TABLE " + BADGES_TABLE + "("
                 + BADGES_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + BADGES_FIELD_NAME + " TEXT, "
@@ -67,6 +76,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 + USERS_FIELD_HOW_MANY_BADGES + " INTEGER, "
                 + USERS_FIELD_PROFILE_PICTURE_NAME + " TEXT " + ")";
         database.execSQL(createQuery);
+
+        // Creating Quest Data Table
+        createQuery = "CREATE TABLE " + QUEST_TABLE + "("
+                + QUEST_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + QUEST_FIELD_NAME + " TEXT, "
+                + QUEST_FIELD_DESCRIPTION + " TEXT, "
+                + QUEST_FIELD_IMAGE_NAME + " TEXT" + ")";
+        database.execSQL(createQuery);
     }
 
     @Override
@@ -74,7 +91,6 @@ public class DBHelper extends SQLiteOpenHelper {
                           int oldVersion,
                           int newVersion) {
         database.execSQL("DROP TABLE IF EXISTS " + BADGES_TABLE);
-        database.execSQL("DROP TABLE IF EXISTS " + USERS_TABLE);
         onCreate(database);
     }
 
@@ -91,32 +107,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(BADGES_TABLE, null, values);
 
         db.close();
-    }
-
-    public List<Badge> getAllBadges() {
-        List<Badge> badgesList = new ArrayList<>();
-        SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.query(
-                BADGES_TABLE,
-                new String[]{BADGES_KEY_FIELD_ID, BADGES_FIELD_NAME, BADGES_FIELD_DESCRIPTION, BADGES_FIELD_IMAGE_NAME},
-                null,
-                null,
-                null, null, null, null);
-
-        // collect each row in the table
-        if (cursor.moveToFirst()) {
-            do {
-                Badge badge = new Badge(
-                        cursor.getLong(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(3));
-                badgesList.add(badge);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        database.close();
-        return badgesList;
     }
 
     public Badge getBadge(long id) {
@@ -143,6 +133,82 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /* END OF BADGE RELATED CODE*/
+
+
+    /* START OF QUEST CODE */
+
+    /**
+     * This method add a new quest into the SQLite database
+     * @param quest Quest is an object we are adding into the database
+     */
+    public void addQuest(Quest quest)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(QUEST_FIELD_NAME, quest.getName());
+        values.put(QUEST_FIELD_DESCRIPTION, quest.getDescription());
+        values.put(QUEST_FIELD_IMAGE_NAME, quest.getImageName());
+
+        db.insert(QUEST_TABLE, null, values);
+
+        db.close();
+    }
+
+    public Quest getQuest(long id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(
+                QUEST_TABLE,
+                new String[]{QUEST_KEY_FIELD_ID, QUEST_FIELD_NAME, QUEST_FIELD_DESCRIPTION, QUEST_FIELD_IMAGE_NAME},
+                QUEST_KEY_FIELD_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Quest quest = new Quest(
+                cursor.getLong(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3));
+
+        cursor.close();
+        db.close();
+        return quest;
+    }
+
+    /* IN SERVICE
+    public List<Quest> getAllQuests()
+    {
+        List<Quest> questList = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.query(
+                QUEST_TABLE,
+                new String[]{QUEST_KEY_FIELD_ID, QUEST_FIELD_NAME, QUEST_FIELD_DESCRIPTION, QUEST_FIELD_IMAGE_NAME},
+                null,
+                null,
+                null, null, null, null);
+
+        // collect each row in the table
+        if (cursor.moveToFirst()) {
+            do {
+                Quest quest = new Quest(
+                        cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3));
+                QuestList.add(quest);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return questList;
+    } */
+
+
+    /* END OF QUEST CODE */
 
 
 
@@ -230,3 +296,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /* END OF IMPORTING FROM CSV METHODS */
 }
+
+
+
