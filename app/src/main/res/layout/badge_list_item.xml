@@ -10,7 +10,7 @@
         android:id="@+id/badgeListImageView"
         android:layout_width="85dp"
         android:layout_height="85dp"
-        app:srcCompat="@drawable/level_1_coffee_cup_badge">
+        app:srcCompat="@drawable/level_1_coffee_cup">
     </ImageView>
 
     <LinearLayout

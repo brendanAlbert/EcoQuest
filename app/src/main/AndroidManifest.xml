@@ -26,6 +26,8 @@
         </activity>
         <activity android:name=".LeaderboardsActivity">
         </activity>
+        <activity android:name=".QuestChainActivity">
+        </activity>
     </application>
 
 </manifest>

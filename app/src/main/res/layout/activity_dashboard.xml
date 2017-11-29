@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/firstRowLinearLayout"
         android:layout_width="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="200dp"
         style="@style/LinearLayoutHeight" >
 
         <Button
@@ -72,7 +72,7 @@
             android:background="#aba"
             android:text="@string/quests"
             android:textStyle="bold"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:textColor="#eeffee"
             android:onClick="questsPage"
             android:layout_height="match_parent"/>

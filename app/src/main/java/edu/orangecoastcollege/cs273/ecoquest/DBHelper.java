@@ -241,20 +241,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 null, null,
                 null, null, null, null);
 
-
-        List<User> mMostPointsUserList = new ArrayList<>();
+        List<User> mUserList = new ArrayList<>();
 
         if (cursor.moveToFirst()) {
             do {
                 User user = new User(cursor.getLong(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4), cursor.getString(5));
-                mMostPointsUserList.add(user);
+                mUserList.add(user);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         db.close();
 
-        return mMostPointsUserList;
+        return mUserList;
     }
 
     /* END OF USER-RELATED METHODS */

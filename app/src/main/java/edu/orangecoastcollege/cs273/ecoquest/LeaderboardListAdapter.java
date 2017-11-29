@@ -1,10 +1,9 @@
 package edu.orangecoastcollege.cs273.ecoquest;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.res.Resources;
-import android.net.Uri;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,12 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
     private List<User> mAllUsersList = new ArrayList<>();
     private String mStatToTrack;
 
-    public LeaderboardListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<User> allUsersList, String statToTrack, ArrayList<Long> rankArray) {
+    LeaderboardListAdapter(@NonNull Context context,
+                                  @LayoutRes int resource,
+                                  @NonNull List<User> allUsersList,
+                                  String statToTrack,
+                                  ArrayList<Long> rankArray)
+    {
         super(context, resource, allUsersList);
         mContext = context;
         mRankArray = rankArray;
@@ -54,9 +60,21 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
 
         User user = mAllUsersList.get(position);
 
-        // This set Text is where the rank of the user is determined and set
+        // This setText is where the rank of the user is determined and set
         rankTextView.setText(String.valueOf(mRankArray.indexOf(user.getId())+1));
-        userImageView.setImageURI(getUriFromResource(mContext,R.drawable.frog));
+
+
+        // Use the AssetManager to retrieve the image
+        AssetManager am = mContext.getAssets();
+
+        try {
+            InputStream stream = am.open(user.getProfilePictureName());
+            Drawable image = Drawable.createFromStream(stream, user.getUserName());
+            userImageView.setImageDrawable(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         userNameTextView.setText(user.getUserName());
 
         if (mStatToTrack.equals("points"))
@@ -71,6 +89,7 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
         return listItemView;
     }
 
+    /*
     private static Uri getUriFromResource(Context context, int resId)
     {
         Resources res = context.getResources();
@@ -84,4 +103,5 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
         // Parse the String in order to construct a URI
         return Uri.parse(uri);
     }
+    */
 }

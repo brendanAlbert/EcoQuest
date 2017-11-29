@@ -15,8 +15,8 @@ public class LeaderboardsActivity extends AppCompatActivity {
 
     private DBHelper db;
 
-    private ArrayList<Long> pointsRankArrayList;
-    private ArrayList<Long> levelsRankArrayList;
+    private ArrayList<Long> pointsRankArrayList; // these ArrayLists will store the ids' of the
+    private ArrayList<Long> levelsRankArrayList; // users.  Index 0 equals rank 1, etc.
     private ArrayList<Long> badgesRankArrayList;
 
     private List<User> mostPointsUserList = null;
@@ -69,7 +69,6 @@ public class LeaderboardsActivity extends AppCompatActivity {
         });
 
         // we want an array or list which stores a user's rank at the index of their id
-        // the users rank is stored at the index of their id
         pointsRankArrayList = new ArrayList<>(mostPointsUserList.size()+1);
 
         for (User user : mostPointsUserList)
