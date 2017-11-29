@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context mContext;
 
     // Database version and name
-    private static final String DATABASE_NAME = "ecoQuest";
+    public static final String DATABASE_NAME = "ecoQuest";
     private static final int DATABASE_VERSION = 1;
 
     // Define the fields (column names) for the badges table
@@ -132,6 +132,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return badge;
     }
 
+    // TODO: Create get all badges method
+
     /* END OF BADGE RELATED CODE*/
 
 
@@ -179,7 +181,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return quest;
     }
 
-    /* IN SERVICE
+
     public List<Quest> getAllQuests()
     {
         List<Quest> questList = new ArrayList<>();
@@ -199,13 +201,13 @@ public class DBHelper extends SQLiteOpenHelper {
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3));
-                QuestList.add(quest);
+                questList.add(quest);
             } while (cursor.moveToNext());
         }
         cursor.close();
         database.close();
         return questList;
-    } */
+    }
 
 
     /* END OF QUEST CODE */

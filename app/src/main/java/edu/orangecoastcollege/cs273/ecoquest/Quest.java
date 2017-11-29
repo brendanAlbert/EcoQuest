@@ -1,14 +1,24 @@
 package edu.orangecoastcollege.cs273.ecoquest;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by CaseyTea on 11/16/17.
  */
 
-public class Quest {
+public class Quest implements Parcelable {
 
+    private long mId;
     private String mName;
     private String mDescription;
     private String mImageName;
+    private int mProgress;
+
+    public Quest()
+    {
+        this(-1, "", "", "avatar.png");
+    }
 
     public Quest(String name, String description, String imageName)
     {
@@ -17,7 +27,26 @@ public class Quest {
         mImageName = imageName;
     }
 
+    public Quest(long id, String name, String description, String imageName)
+    {
+        mId = id;
+        mName = name;
+        mDescription = description;
+        mImageName = imageName;
+
+    }
+
+    // Parcelable interface uses a private constructor to instantiate objects
+    private Quest(Parcel parcel)
+    {
+        mId = parcel.readLong();
+        mName = parcel.readString();
+        mDescription = parcel.readString();
+        mImageName = parcel.readString();
+    }
+
     // Getter methods:
+
 
     /**
      * Method to get name of quest description.
@@ -58,4 +87,30 @@ public class Quest {
     public void setImageName(String imageName) { mImageName = imageName; }
 
 
+    // Parcel methods
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(mId);
+        dest.writeString(mName);
+        dest.writeString(mDescription);
+        dest.writeString(mImageName);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Quest> CREATOR = new Creator<Quest>() {
+        @Override
+        public Quest createFromParcel(Parcel in) {
+            return new Quest(in);
+        }
+
+        @Override
+        public Quest[] newArray(int size) {
+            return new Quest[size];
+        }
+    };
 }

@@ -2,8 +2,12 @@ package edu.orangecoastcollege.cs273.ecoquest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,9 +70,21 @@ public class BadgeListAdapter extends ArrayAdapter<Badge>{
             ProgressBar badgeListProgressBar =
                     (ProgressBar) view.findViewById(R.id.badgeListProgressBar);
 
-            // create selectedBadge and set tags
+            badgeListLinearLayout.setTag(selectBadge);
+            badgeListNameTextView.setText(selectBadge.getName());
 
+            AssetManager am = mContext.getAssets();
+            try{
+                InputStream stream = am.open(selectBadge.getImageName());
+                Drawable event = Drawable.createFromStream(stream, selectBadge.getName());
+                badgeListImageView.setImageDrawable(event);
+            }
+            catch (IOException ex)
+            {
+                Log.e("EcoQuest", "Error loading " + selectBadge.getImageName(), ex);
+            }
 
+            return view;
         }
 
 
