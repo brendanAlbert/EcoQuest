@@ -51,6 +51,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String QUEST_FIELD_NAME = "name";
     private static final String QUEST_FIELD_DESCRIPTION = "description";
     private static final String QUEST_FIELD_IMAGE_NAME = "image_name";
+    private static final String QUEST_FIELD_CURRENT_PROGRESS = "current_progress";
+    private static final String QUEST_FIELD_MAX_PROGRESS = "max_progress";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -91,6 +93,8 @@ public class DBHelper extends SQLiteOpenHelper {
                           int oldVersion,
                           int newVersion) {
         database.execSQL("DROP TABLE IF EXISTS " + BADGES_TABLE);
+        database.execSQL("DROP TABLE IF EXISTS " + USERS_TABLE);
+        database.execSQL("DROP TABLE IF EXISTS " + QUEST_TABLE);
         onCreate(database);
     }
 
@@ -151,6 +155,8 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(QUEST_FIELD_NAME, quest.getName());
         values.put(QUEST_FIELD_DESCRIPTION, quest.getDescription());
         values.put(QUEST_FIELD_IMAGE_NAME, quest.getImageName());
+        values.put(QUEST_FIELD_CURRENT_PROGRESS, quest.getCurrentProgress());
+        values.put(QUEST_FIELD_MAX_PROGRESS, quest.getMaxProgress());
 
         db.insert(QUEST_TABLE, null, values);
 
@@ -174,7 +180,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 cursor.getLong(0),
                 cursor.getString(1),
                 cursor.getString(2),
-                cursor.getString(3));
+                cursor.getString(3),
+                cursor.getInt(4),
+                cursor.getInt(5));
 
         cursor.close();
         db.close();
@@ -188,7 +196,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.query(
                 QUEST_TABLE,
-                new String[]{QUEST_KEY_FIELD_ID, QUEST_FIELD_NAME, QUEST_FIELD_DESCRIPTION, QUEST_FIELD_IMAGE_NAME},
+                new String[]{QUEST_KEY_FIELD_ID, QUEST_FIELD_NAME, QUEST_FIELD_DESCRIPTION, QUEST_FIELD_IMAGE_NAME, QUEST_FIELD_CURRENT_PROGRESS, QUEST_FIELD_MAX_PROGRESS},
                 null,
                 null,
                 null, null, null, null);
@@ -200,7 +208,9 @@ public class DBHelper extends SQLiteOpenHelper {
                         cursor.getLong(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getString(3));
+                        cursor.getString(3),
+                        cursor.getInt(4),
+                        cursor.getInt(5));
                 questList.add(quest);
             } while (cursor.moveToNext());
         }
@@ -292,6 +302,40 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return true;
     }
+
+    boolean importQuestsFromCSV(String csvFileName) {
+        AssetManager assetManager = mContext.getAssets();
+        InputStream inputStream = null;
+        try {
+            inputStream = assetManager.open(csvFileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length != 5) {
+                    Log.d("ecoQuest", "Skipping Bad CSV Row: " + Arrays.toString(fields));
+                }
+                else {
+                    String questName    = fields[0].trim();
+                    String questDesc    = fields[1].trim();
+                    String questIcon    = fields[2].trim();
+                    int currentProgress = Integer.parseInt(fields[3].trim());
+                    int maxProgress     = Integer.parseInt(fields[4].trim());
+                    addQuest(new Quest(questName, questDesc, questIcon, currentProgress, maxProgress));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 
 
 

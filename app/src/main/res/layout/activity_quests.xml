@@ -22,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="parkQuests"
             app:srcCompat="@mipmap/ic_launcher_round"/>
 
         <ImageView
@@ -29,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="beachQuests"
             app:srcCompat="@mipmap/ic_launcher_round"/>
 
         <ImageView
@@ -36,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="cityQuests"
             app:srcCompat="@mipmap/ic_launcher_round"/>
     </LinearLayout>
 
@@ -52,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="schoolQuests"
             app:srcCompat="@mipmap/ic_launcher_round"/>
 
         <ImageView
@@ -59,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="trashQuests"
             app:srcCompat="@mipmap/ic_launcher_round"/>
 
         <ImageView
@@ -66,6 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="recycleQuests"
             app:srcCompat="@mipmap/ic_launcher_round"/>
     </LinearLayout>
 
@@ -83,7 +89,7 @@
         android:text="Tap above buttons to see quests available for each area"/>
 
     <ListView
-        android:id="@+id/questPageListView"
+        android:id="@+id/questsPageListView"
         android:layout_marginTop="20dp"
         android:layout_below="@id/listedQuestsTextView"
         android:layout_width="match_parent"

@@ -3,8 +3,14 @@ package edu.orangecoastcollege.cs273.ecoquest;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 /**
  * Created by CaseyTea on 11/16/17.
+ *
+ * Edits made by Brendan include:
+ *  added current and max progress.
+ *  I needed these for quest completion icon selection.
  */
 
 public class Quest implements Parcelable {
@@ -13,26 +19,35 @@ public class Quest implements Parcelable {
     private String mName;
     private String mDescription;
     private String mImageName;
-    private int mProgress;
+    private int mCurrentProgress; // quests can be 0/1, 0/5, 0/10, 0/25, etc..
+    private int mMaxProgress;
+    // quest types from the QuestType class will populate this array at their respective indices
+    private List<Integer> mQuestTypes;
 
     public Quest()
     {
-        this(-1, "", "", "avatar.png");
+        this(-1, "", "", "avatar.png", -1, null);
     }
 
-    public Quest(String name, String description, String imageName)
+    public Quest(String name, String description, String imageName, int maxProgress, List<Integer> questTypes)
     {
         mName = name;
         mDescription = description;
         mImageName = imageName;
+        mCurrentProgress = 0;
+        mMaxProgress = maxProgress;
+        mQuestTypes = questTypes;
     }
 
-    public Quest(long id, String name, String description, String imageName)
+    public Quest(long id, String name, String description, String imageName, int maxProgress, List<Integer> questTypes)
     {
         mId = id;
         mName = name;
         mDescription = description;
         mImageName = imageName;
+        mCurrentProgress = 0;
+        mMaxProgress = maxProgress;
+        mQuestTypes = questTypes;
 
     }
 
@@ -43,6 +58,9 @@ public class Quest implements Parcelable {
         mName = parcel.readString();
         mDescription = parcel.readString();
         mImageName = parcel.readString();
+        mCurrentProgress = parcel.readInt();
+        mMaxProgress = parcel.readInt();
+
     }
 
     // Getter methods:
@@ -86,7 +104,21 @@ public class Quest implements Parcelable {
      */
     public void setImageName(String imageName) { mImageName = imageName; }
 
+    public int getCurrentProgress() {
+        return mCurrentProgress;
+    }
 
+    public void setCurrentProgress(int currentProgress) {
+        mCurrentProgress = currentProgress;
+    }
+
+    public int getMaxProgress() {
+        return mMaxProgress;
+    }
+
+    public void setMaxProgress(int maxProgress) {
+        mMaxProgress = maxProgress;
+    }
     // Parcel methods
 
     @Override
@@ -95,6 +127,8 @@ public class Quest implements Parcelable {
         dest.writeString(mName);
         dest.writeString(mDescription);
         dest.writeString(mImageName);
+        dest.writeInt(mCurrentProgress);
+        dest.writeInt(mMaxProgress);
     }
 
     @Override
