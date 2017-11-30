@@ -11,6 +11,7 @@ public class Badge {
     private String mDescription;
     private String mImageName;
 
+
     public Badge(long id, String name, String description, String imageName) {
         mId = id;
         mName = name;

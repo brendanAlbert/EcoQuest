@@ -54,6 +54,12 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String QUEST_FIELD_CURRENT_PROGRESS = "current_progress";
     private static final String QUEST_FIELD_MAX_PROGRESS = "max_progress";
 
+    // Define the fields (column names) for the Titles table
+    private static final String TITLE_TABLE = "titles";
+    private static final String TITLE_KEY_FIELD_ID = "_id";
+    private static final String TITLE_FIELD_NAME = "name";
+
+
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         mContext = context;
@@ -86,6 +92,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 + QUEST_FIELD_DESCRIPTION + " TEXT, "
                 + QUEST_FIELD_IMAGE_NAME + " TEXT" + ")";
         database.execSQL(createQuery);
+
+        // Creating Title Data Table
+        createQuery = "CREATE TABLE "+ TITLE_TABLE + "("
+                + TITLE_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + TITLE_FIELD_NAME + "TEXT" + ")";
     }
 
     @Override
@@ -136,7 +147,34 @@ public class DBHelper extends SQLiteOpenHelper {
         return badge;
     }
 
-    // TODO: Create get all badges method
+    public List<Badge> getAllBadges()
+    {
+        List<Badge> badgeList = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.query(
+                BADGES_TABLE,
+                new String[]{BADGES_KEY_FIELD_ID, BADGES_FIELD_NAME, BADGES_FIELD_DESCRIPTION, BADGES_FIELD_IMAGE_NAME},
+                null,
+                null,
+                null, null, null, null);
+
+        // Collect each row in the table
+        if (cursor.moveToFirst())
+        {
+            do {
+                Badge badge = new Badge(
+                        cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3));
+                badgeList.add(badge);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+
+        return badgeList;
+    }
 
     /* END OF BADGE RELATED CODE*/
 
@@ -222,6 +260,33 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /* END OF QUEST CODE */
 
+
+    /* START TITLE CODE */
+
+    public Title getTitle(long id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(
+                TITLE_TABLE,
+            new String[]{TITLE_KEY_FIELD_ID, TITLE_FIELD_NAME},
+            QUEST_KEY_FIELD_ID + "=?",
+             new String[]{String.valueOf(id)},
+             null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Title title = new Title(
+                cursor.getLong(0),
+                cursor.getString(1));
+
+        cursor.close();
+        db.close();
+        return title;
+    }
+
+
+    /* END OF TITLE CODE */
 
 
     /* START OF USER-RELATED METHODS */
