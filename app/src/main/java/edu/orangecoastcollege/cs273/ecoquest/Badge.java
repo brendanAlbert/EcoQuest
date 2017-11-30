@@ -1,10 +1,13 @@
 package edu.orangecoastcollege.cs273.ecoquest;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by brendantyleralbert on 11/16/17.
  */
 
-public class Badge {
+public class Badge implements Parcelable{
 
     private long mId;
     private String mName;
@@ -18,6 +21,8 @@ public class Badge {
         mDescription = description;
         mImageName = imageName;
     }
+
+
 
     public Badge(String name, String description, String imageName) { this(-1, name, description, imageName); }
 
@@ -49,5 +54,15 @@ public class Badge {
 
     public void setImageName(String imageName) {
         mImageName = imageName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }
