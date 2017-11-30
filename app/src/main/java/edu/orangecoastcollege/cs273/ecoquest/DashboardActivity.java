@@ -26,4 +26,11 @@ public class DashboardActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LeaderboardsActivity.class);
         startActivity(intent);
     }
+
+    public void profilePage(View view)
+    {
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        startActivity(intent);
+    }
+
 }

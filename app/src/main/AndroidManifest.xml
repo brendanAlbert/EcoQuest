@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".QuestChainActivity">
         </activity>
+        <activity android:name=".UserProfileActivity">
+        </activity>
     </application>
 
 </manifest>
