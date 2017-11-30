@@ -143,11 +143,31 @@ public class DBHelper extends SQLiteOpenHelper {
         return badge;
     }
 
-    // TODO: Create get all badges method
     public List<Badge> getAllBadges()
     {
         List<Badge> badgeList = new ArrayList<>();
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.query(
+                BADGES_TABLE,
+                new String[]{BADGES_KEY_FIELD_ID, BADGES_FIELD_NAME, BADGES_FIELD_DESCRIPTION, BADGES_FIELD_IMAGE_NAME},
+                null,
+                null,
+                null, null, null, null);
 
+        // Collect each row in the table
+        if (cursor.moveToFirst())
+        {
+            do {
+                Badge badge = new Badge(
+                        cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3));
+                badgeList.add(badge);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
 
         return badgeList;
     }

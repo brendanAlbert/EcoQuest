@@ -26,5 +26,11 @@ public class Title
      */
     public String getName() { return mName; }
 
+    /**
+     * Method return the Id of the Title.
+     * @return Return the Title ID as a long.
+     */
+    public long getId() { return mId; }
+
 
 }
