@@ -49,11 +49,6 @@ public class QuestsActivity extends AppCompatActivity {
 
     private List<Quest> filterParkQuests()
     {
-        //int[] questTypes;
-        //for (Quest quest : mAllQuestsList) {
-           // questTypes = quest.getQuestTypes();
-           // if ( questTypes QuestType.PARK)
-        //}
         return null;
     }
 
