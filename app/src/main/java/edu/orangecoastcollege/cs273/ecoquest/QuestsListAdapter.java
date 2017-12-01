@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,6 @@ public class QuestsListAdapter extends ArrayAdapter<Quest> {
         ImageView questCompleteStatusImageView = questListItemView.findViewById(R.id.questCompleteStatusImageView);
 
         Quest quest = mQuestsList.get(position);
-        Log.i("quest in adapter", quest.toString());
 
         questNameTextView.setText(quest.getName());
         questDescriptionTextView.setText(quest.getDescription());

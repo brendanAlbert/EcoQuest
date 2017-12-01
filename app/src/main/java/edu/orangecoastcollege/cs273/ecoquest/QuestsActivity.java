@@ -2,7 +2,6 @@ package edu.orangecoastcollege.cs273.ecoquest;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,8 +39,6 @@ public class QuestsActivity extends AppCompatActivity {
         db = new DBHelper(this);
         db.importQuestsFromCSV("quests.csv");
         mAllQuestsList = db.getAllQuests();
-        for (Quest q : mAllQuestsList)
-            Log.i("onCreate", q.toString());
     }
 
     public void parkQuests(View v)
@@ -61,7 +58,6 @@ public class QuestsActivity extends AppCompatActivity {
             tempIntList = quest.getQuestTypes();
             if (tempIntList.contains(QuestType.PARK)) {
                 parkQuestList.add(quest);
-                Log.i("filterParkQuests", quest.toString());
             }
         }
         return parkQuestList;

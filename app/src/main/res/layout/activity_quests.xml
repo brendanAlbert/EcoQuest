@@ -19,27 +19,27 @@
 
         <ImageView
             android:id="@+id/parkQuestsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:onClick="parkQuests"
-            app:srcCompat="@mipmap/ic_launcher_round"/>
+            app:srcCompat="@drawable/park_quests_button_icon"/>
 
         <ImageView
             android:id="@+id/beachQuestsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:onClick="beachQuests"
-            app:srcCompat="@mipmap/ic_launcher_round"/>
+            app:srcCompat="@drawable/beach_quests_button_icon"/>
 
         <ImageView
             android:id="@+id/cityQuestsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:onClick="cityQuests"
-            app:srcCompat="@mipmap/ic_launcher_round"/>
+            app:srcCompat="@drawable/city_quests_button_icon"/>
     </LinearLayout>
 
     <LinearLayout
@@ -52,27 +52,27 @@
 
         <ImageView
             android:id="@+id/schoolQuestsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:onClick="schoolQuests"
-            app:srcCompat="@mipmap/ic_launcher_round"/>
+            app:srcCompat="@drawable/school_quests_button_icon"/>
 
         <ImageView
             android:id="@+id/trashQuestsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:onClick="trashQuests"
-            app:srcCompat="@mipmap/ic_launcher_round"/>
+            app:srcCompat="@drawable/trash_quests_button_icon"/>
 
         <ImageView
             android:id="@+id/recycleQuestsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:onClick="recycleQuests"
-            app:srcCompat="@mipmap/ic_launcher_round"/>
+            app:srcCompat="@drawable/recycle_quests_button_icon"/>
     </LinearLayout>
 
 
