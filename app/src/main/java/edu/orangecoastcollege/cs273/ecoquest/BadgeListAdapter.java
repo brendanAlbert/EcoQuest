@@ -52,23 +52,16 @@ public class BadgeListAdapter extends ArrayAdapter<Badge>{
         @Override
         public View getView(int pos, View convertView, ViewGroup parent)
         {
-            final Badge selectBadge = mBadgeList.get(pos);
+            Badge selectBadge = mBadgeList.get(pos);
 
-            LayoutInflater inflater =
-                    (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(mResourceId, null);
 
-            LinearLayout badgeListLinearLayout =
-                    (LinearLayout) view.findViewById(R.id.badgesListLinearLayout);
+            LinearLayout badgeListLinearLayout = view.findViewById(R.id.badgesListLinearLayout);
 
-            ImageView badgeListImageView =
-                    (ImageView) view.findViewById(R.id.badgeListImageView);
-
-            TextView badgeListNameTextView =
-                    (TextView) view.findViewById(R.id.badgeListNameTextView);
-
-            ProgressBar badgeListProgressBar =
-                    (ProgressBar) view.findViewById(R.id.badgeListProgressBar);
+            ImageView badgeListImageView = view.findViewById(R.id.badgeListImageView);
+            TextView badgeListNameTextView = view.findViewById(R.id.badgeListNameTextView);
+            ProgressBar badgeListProgressBar = view.findViewById(R.id.badgeListProgressBar);
 
             badgeListLinearLayout.setTag(selectBadge);
             badgeListNameTextView.setText(selectBadge.getName());

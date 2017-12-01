@@ -487,7 +487,7 @@ public class DBHelper extends SQLiteOpenHelper {
             while((line = bufferedReader.readLine()) != null)
             {
                 String[] fields = line.split(",");
-                if (fields.length != 5 )
+                if (fields.length != 4 )
                 {
                     Log.d("ecoQuest", "Skipping Bad CSV Row: " + Arrays.toString(fields));
                 }
