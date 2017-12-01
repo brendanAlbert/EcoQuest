@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by brendantyleralbert on 11/29/17.
@@ -48,6 +50,7 @@ public class QuestsListAdapter extends ArrayAdapter<Quest> {
         ImageView questCompleteStatusImageView = questListItemView.findViewById(R.id.questCompleteStatusImageView);
 
         Quest quest = mQuestsList.get(position);
+        Log.i("quest in adapter", quest.toString());
 
         questNameTextView.setText(quest.getName());
         questDescriptionTextView.setText(quest.getDescription());
@@ -58,11 +61,22 @@ public class QuestsListAdapter extends ArrayAdapter<Quest> {
             Drawable image = Drawable.createFromStream(stream, quest.getName());
             questIconImageView.setImageDrawable(image);
             // if quest complete setImageDrawable to quest_complete.png
-            image = Drawable.createFromStream(stream, "quest_complete.png");
-            questCompleteStatusImageView.setImageDrawable(image);
-            // else set to quest_incomplete.png
-            //image = Drawable.createFromStream(stream, quest.getImageName());
-            //questCompleteStatusImageView.setImageDrawable(image);
+
+            Random rand = new Random(); // this is just for purposes of making the test more interesting to look at while debugging
+            int numb = rand.nextInt(10);
+
+            if (numb % 2 == 0) {
+                InputStream stream1 = am.open("quest_complete.png");
+                image = Drawable.createFromStream(stream1, "quest_complete.png");
+                questCompleteStatusImageView.setImageDrawable(image);
+            }
+            else {
+                // else set to quest_incomplete.png
+                InputStream stream2 = am.open("quest_incomplete.png");
+                image = Drawable.createFromStream(stream2, "quest_incomplete.png");
+                questCompleteStatusImageView.setImageDrawable(image);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

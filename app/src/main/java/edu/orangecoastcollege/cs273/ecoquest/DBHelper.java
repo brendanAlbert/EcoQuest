@@ -203,7 +203,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Long id = db.insert(QUEST_TABLE, null, values);
 
         quest.setId(id);
-        Log.i("Quests: ", quest.toString());
 
         db.close();
     }
@@ -444,7 +443,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String questTypesString = "";
 
         for (Integer i : integerList)
-            questTypesString = " " + String.valueOf(i);
+            questTypesString += " " + String.valueOf(i);
 
         return questTypesString;
     }
