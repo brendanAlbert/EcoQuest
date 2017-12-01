@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".UserProfileActivity">
         </activity>
+        <activity android:name=".BadgesListActivity">
+        </activity>
     </application>
 
 </manifest>

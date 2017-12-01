@@ -27,7 +27,7 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void profilePage(View view)
+    public void viewProfilePage(View view)
     {
         Intent intent = new Intent(this, UserProfileActivity.class);
         startActivity(intent);

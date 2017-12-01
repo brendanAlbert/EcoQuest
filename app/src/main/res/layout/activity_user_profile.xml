@@ -31,9 +31,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/badgesList"
-        android:layout_alignParentStart="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_above="@+id/badgesListView"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/badgesEarnedTextView"

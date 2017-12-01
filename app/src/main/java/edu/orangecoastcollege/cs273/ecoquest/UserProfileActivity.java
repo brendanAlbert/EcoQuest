@@ -23,6 +23,7 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         db = new DBHelper(this);
+        db.importBadgesFromCSV("badges.csv");
 
         badgesList = db.getAllBadges();
         badgeListAdapter = new BadgeListAdapter(this, R.layout.badge_list_item, badgesList);

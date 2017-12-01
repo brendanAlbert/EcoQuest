@@ -6,5 +6,6 @@
     <string name="badges">badges</string>
     <string name="boards">boards</string>
     <string name="quests">Quests!</string>
+    <string name="badgeListTitle">Badges</string>
 
 </resources>

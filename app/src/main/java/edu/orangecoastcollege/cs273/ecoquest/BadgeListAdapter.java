@@ -72,6 +72,7 @@ public class BadgeListAdapter extends ArrayAdapter<Badge>{
 
             badgeListLinearLayout.setTag(selectBadge);
             badgeListNameTextView.setText(selectBadge.getName());
+            badgeListProgressBar.setProgress(selectBadge.getProgress());
 
             AssetManager am = mContext.getAssets();
             try{

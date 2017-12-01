@@ -34,6 +34,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String BADGES_FIELD_NAME = "name";
     private static final String BADGES_FIELD_DESCRIPTION = "description";
     private static final String BADGES_FIELD_IMAGE_NAME = "image_name";
+    private static final String BADGES_FIELD_CURRENT_PROGRESS = "current_progress";
+    private static final String BADGES_FIELD_MAX_PROGRESS = "max_progress";
 
     // Define the fields for the users table
     private static final String USERS_TABLE = "users";
@@ -74,7 +76,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 + BADGES_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + BADGES_FIELD_NAME + " TEXT, "
                 + BADGES_FIELD_DESCRIPTION + " TEXT, "
-                + BADGES_FIELD_IMAGE_NAME + " TEXT" + ")";
+                + BADGES_FIELD_IMAGE_NAME + " TEXT, "
+                + BADGES_FIELD_CURRENT_PROGRESS + " INTEGER, "
+                + BADGES_FIELD_MAX_PROGRESS + " INTEGER " +  ")";
         database.execSQL(createQuery);
 
         createQuery = "CREATE TABLE " + USERS_TABLE + "("
@@ -122,6 +126,8 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(BADGES_FIELD_NAME, badge.getName());
         values.put(BADGES_FIELD_DESCRIPTION, badge.getDescription());
         values.put(BADGES_FIELD_IMAGE_NAME, badge.getImageName());
+        values.put(BADGES_FIELD_CURRENT_PROGRESS, badge.getProgress());
+        values.put(BADGES_FIELD_MAX_PROGRESS, badge.getMaxProgress());
 
         db.insert(BADGES_TABLE, null, values);
 
@@ -132,7 +138,11 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(
                 BADGES_TABLE,
-                new String[]{BADGES_KEY_FIELD_ID, BADGES_FIELD_NAME, BADGES_FIELD_DESCRIPTION, BADGES_FIELD_IMAGE_NAME},
+                new String[]{BADGES_KEY_FIELD_ID,
+                        BADGES_FIELD_NAME,
+                        BADGES_FIELD_DESCRIPTION,
+                        BADGES_FIELD_IMAGE_NAME,
+                        BADGES_FIELD_MAX_PROGRESS},
                 BADGES_KEY_FIELD_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null);
@@ -144,7 +154,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 cursor.getLong(0),
                 cursor.getString(1),
                 cursor.getString(2),
-                cursor.getString(3));
+                cursor.getString(3),
+                cursor.getInt(4),
+                cursor.getInt(5));
 
         cursor.close();
         db.close();
@@ -157,7 +169,12 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.query(
                 BADGES_TABLE,
-                new String[]{BADGES_KEY_FIELD_ID, BADGES_FIELD_NAME, BADGES_FIELD_DESCRIPTION, BADGES_FIELD_IMAGE_NAME},
+                new String[]{BADGES_KEY_FIELD_ID,
+                        BADGES_FIELD_NAME,
+                        BADGES_FIELD_DESCRIPTION,
+                        BADGES_FIELD_IMAGE_NAME,
+                        BADGES_FIELD_CURRENT_PROGRESS,
+                        BADGES_FIELD_MAX_PROGRESS},
                 null,
                 null,
                 null, null, null, null);
@@ -170,7 +187,10 @@ public class DBHelper extends SQLiteOpenHelper {
                         cursor.getLong(0),
                         cursor.getString(1),
                         cursor.getString(2),
-                        cursor.getString(3));
+                        cursor.getString(3),
+                        cursor.getInt(4),
+                        cursor.getInt(5));
+
                 badgeList.add(badge);
             }while (cursor.moveToNext());
         }
@@ -449,6 +469,42 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+    // Import Badges from csv file
+    boolean importBadgesFromCSV(String csvFileName)
+    {
+        AssetManager assetManager = mContext.getAssets();
+        InputStream inputStream = null;
+        try{
+            inputStream = assetManager.open(csvFileName);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
+        try {
+            while((line = bufferedReader.readLine()) != null)
+            {
+                String[] fields = line.split(",");
+                if (fields.length != 5 )
+                {
+                    Log.d("ecoQuest", "Skipping Bad CSV Row: " + Arrays.toString(fields));
+                }
+                else
+                {
+                    String badgeName = fields[0].trim();
+                    String badgeDesc = fields[1].trim();
+                    String badgeIcon = fields[2].trim();
+                    int maxProgress  = Integer.parseInt(fields[3].trim());
+                    addBadge(new Badge(badgeName, badgeDesc, badgeIcon, maxProgress));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
 
     /* END OF IMPORTING FROM CSV METHODS */
