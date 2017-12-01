@@ -53,6 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String QUEST_FIELD_IMAGE_NAME = "image_name";
     private static final String QUEST_FIELD_CURRENT_PROGRESS = "current_progress";
     private static final String QUEST_FIELD_MAX_PROGRESS = "max_progress";
+    private static final String QUEST_FIELD_QUEST_TYPES = "quest_types";
 
     // Define the fields (column names) for the Titles table
     private static final String TITLE_TABLE = "titles";
@@ -206,7 +207,13 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(
                 QUEST_TABLE,
-                new String[]{QUEST_KEY_FIELD_ID, QUEST_FIELD_NAME, QUEST_FIELD_DESCRIPTION, QUEST_FIELD_IMAGE_NAME},
+                new String[]{QUEST_KEY_FIELD_ID,
+                        QUEST_FIELD_NAME,
+                        QUEST_FIELD_DESCRIPTION,
+                        QUEST_FIELD_IMAGE_NAME,
+                        QUEST_FIELD_CURRENT_PROGRESS,
+                        QUEST_FIELD_MAX_PROGRESS,
+                        QUEST_FIELD_QUEST_TYPES},
                 QUEST_KEY_FIELD_ID + "=?",
                 new String[]{String.valueOf(id)},
                 null, null, null, null);
@@ -220,7 +227,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getInt(4),
-                cursor.getInt(5));
+                cursor.getInt(5),
+                convertStringToList(cursor.getString(6)));
 
         cursor.close();
         db.close();
@@ -234,7 +242,13 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.query(
                 QUEST_TABLE,
-                new String[]{QUEST_KEY_FIELD_ID, QUEST_FIELD_NAME, QUEST_FIELD_DESCRIPTION, QUEST_FIELD_IMAGE_NAME, QUEST_FIELD_CURRENT_PROGRESS, QUEST_FIELD_MAX_PROGRESS},
+                new String[]{QUEST_KEY_FIELD_ID,
+                        QUEST_FIELD_NAME,
+                        QUEST_FIELD_DESCRIPTION,
+                        QUEST_FIELD_IMAGE_NAME,
+                        QUEST_FIELD_CURRENT_PROGRESS,
+                        QUEST_FIELD_MAX_PROGRESS,
+                        QUEST_FIELD_QUEST_TYPES},
                 null,
                 null,
                 null, null, null, null);
@@ -248,7 +262,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         cursor.getString(2),
                         cursor.getString(3),
                         cursor.getInt(4),
-                        cursor.getInt(5));
+                        cursor.getInt(5),
+                        convertStringToList(cursor.getString(6)));
                 questList.add(quest);
             } while (cursor.moveToNext());
         }
@@ -382,16 +397,16 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] fields = line.split(",");
-                if (fields.length != 5) {
+                if (fields.length != 4) {
                     Log.d("ecoQuest", "Skipping Bad CSV Row: " + Arrays.toString(fields));
                 }
                 else {
                     String questName    = fields[0].trim();
                     String questDesc    = fields[1].trim();
                     String questIcon    = fields[2].trim();
-                    int currentProgress = Integer.parseInt(fields[3].trim());
-                    int maxProgress     = Integer.parseInt(fields[4].trim());
-                    addQuest(new Quest(questName, questDesc, questIcon, currentProgress, maxProgress));
+                    int maxProgress     = Integer.parseInt(fields[3].trim());
+                    String questTypes   = fields[4].trim();
+                    addQuest(new Quest(questName, questDesc, questIcon, maxProgress, convertStringToList(questTypes)));
                 }
             }
         } catch (IOException e) {
@@ -399,6 +414,20 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
         return true;
+    }
+
+    private List<Integer> convertStringToList(String csvString)
+    {
+        List<Integer> questTypesList = new ArrayList<>();
+
+        //csvString = "0 4 5"
+        String[] values = csvString.split(" ");
+        //values = ["0"|"4"|"5"]
+
+        for (String value : values)
+            questTypesList.add(Integer.parseInt(value));
+
+        return questTypesList;
     }
 
 

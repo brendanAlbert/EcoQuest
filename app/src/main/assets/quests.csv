@@ -1,7 +1,7 @@
-5 Butts               , collect and throw away 5 cigarette butts          , 5_butts_quest.png         , 5 , 5
-10 Butts              , collect and throw away 10 cigarette butts         , 10_butts_quest.png        , 5 , 10
-25 Butts              , collect and throw away 25 cigarette butts         , 25_butts_quest.png        , 5 , 25
-Visit Newport Beach   , Visit Newport Beach and toss or recycle 1 item    , visit_newport_beach.png   , 0 , 1
-Visit Laguna Beach    , Visit Laguna Beach and toss or recycle 1 item     , visit_laguna_beach.png    , 0 , 1
-Visit Huntington Beach, Visit Huntington Beach and toss or recycle 1 item , visit_huntington_beach.png, 0 , 1
-Visit TeWinkle Park   , Visit TeWinkle Park and toss or recycle 1 item    , visit_tewinkle_park.png   , 0 , 1
+5 Butts               , collect and throw away 5 cigarette butts          , 5_butts_quest.png         , 5  , 4
+10 Butts              , collect and throw away 10 cigarette butts         , 10_butts_quest.png        , 10 , 4
+25 Butts              , collect and throw away 25 cigarette butts         , 25_butts_quest.png        , 25 , 4
+Visit Newport Beach   , Visit Newport Beach and toss or recycle 1 item    , visit_newport_beach.png   , 1  , 1 4 5
+Visit Laguna Beach    , Visit Laguna Beach and toss or recycle 1 item     , visit_laguna_beach.png    , 1  , 1 4 5
+Visit Huntington Beach, Visit Huntington Beach and toss or recycle 1 item , visit_huntington_beach.png, 1  , 1 4 5
+Visit TeWinkle Park   , Visit TeWinkle Park and toss or recycle 1 item    , visit_tewinkle_park.png   , 1  , 0 4 5

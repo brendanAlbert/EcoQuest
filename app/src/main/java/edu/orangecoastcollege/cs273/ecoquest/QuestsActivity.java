@@ -41,7 +41,7 @@ public class QuestsActivity extends AppCompatActivity {
 
     public void parkQuests(View v)
     {
-        mListedQuestsTextView.setText("All quests that take place in parks.");
+        mListedQuestsTextView.setText("All park quests.");
         if (mParkQuestsList == null)
             mParkQuestsList = filterParkQuests();
         mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mParkQuestsList);

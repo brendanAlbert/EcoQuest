@@ -51,6 +51,18 @@ public class Quest implements Parcelable {
 
     }
 
+    public Quest(long id, String name, String description, String imageName, int currentProgress, int maxProgress, List<Integer> questTypes)
+    {
+        mId = id;
+        mName = name;
+        mDescription = description;
+        mImageName = imageName;
+        mCurrentProgress = currentProgress;
+        mMaxProgress = maxProgress;
+        mQuestTypes = questTypes;
+
+    }
+
     // Parcelable interface uses a private constructor to instantiate objects
     private Quest(Parcel parcel)
     {
@@ -60,7 +72,7 @@ public class Quest implements Parcelable {
         mImageName = parcel.readString();
         mCurrentProgress = parcel.readInt();
         mMaxProgress = parcel.readInt();
-
+        parcel.readList(mQuestTypes, List.class.getClassLoader());
     }
 
     // Getter methods:
@@ -119,6 +131,11 @@ public class Quest implements Parcelable {
     public void setMaxProgress(int maxProgress) {
         mMaxProgress = maxProgress;
     }
+
+    public List<Integer> getQuestTypes() { return mQuestTypes; }
+
+    public void setQuestTypes(List<Integer> questTypes) { mQuestTypes = questTypes; }
+
     // Parcel methods
 
     @Override
@@ -129,6 +146,7 @@ public class Quest implements Parcelable {
         dest.writeString(mImageName);
         dest.writeInt(mCurrentProgress);
         dest.writeInt(mMaxProgress);
+        dest.writeList(mQuestTypes);
     }
 
     @Override
