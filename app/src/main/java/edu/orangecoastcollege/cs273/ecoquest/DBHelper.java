@@ -91,7 +91,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 + QUEST_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + QUEST_FIELD_NAME + " TEXT, "
                 + QUEST_FIELD_DESCRIPTION + " TEXT, "
-                + QUEST_FIELD_IMAGE_NAME + " TEXT" + ")";
+                + QUEST_FIELD_IMAGE_NAME + " TEXT,"
+                + QUEST_FIELD_CURRENT_PROGRESS + " INTEGER, "
+                + QUEST_FIELD_MAX_PROGRESS + " INTEGER, "
+                + QUEST_FIELD_QUEST_TYPES + " TEXT " + ")";
         database.execSQL(createQuery);
 
         // Creating Title Data Table
@@ -194,13 +197,18 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(QUEST_FIELD_NAME, quest.getName());
         values.put(QUEST_FIELD_DESCRIPTION, quest.getDescription());
         values.put(QUEST_FIELD_IMAGE_NAME, quest.getImageName());
-        values.put(QUEST_FIELD_CURRENT_PROGRESS, quest.getCurrentProgress());
         values.put(QUEST_FIELD_MAX_PROGRESS, quest.getMaxProgress());
+        values.put(QUEST_FIELD_QUEST_TYPES, convertListToString(quest.getQuestTypes()));
 
-        db.insert(QUEST_TABLE, null, values);
+        Long id = db.insert(QUEST_TABLE, null, values);
+
+        quest.setId(id);
+        Log.i("Quests: ", quest.toString());
 
         db.close();
     }
+
+
 
     public Quest getQuest(long id)
     {
@@ -397,7 +405,7 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] fields = line.split(",");
-                if (fields.length != 4) {
+                if (fields.length != 5) {
                     Log.d("ecoQuest", "Skipping Bad CSV Row: " + Arrays.toString(fields));
                 }
                 else {
@@ -406,7 +414,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     String questIcon    = fields[2].trim();
                     int maxProgress     = Integer.parseInt(fields[3].trim());
                     String questTypes   = fields[4].trim();
-                    addQuest(new Quest(questName, questDesc, questIcon, maxProgress, convertStringToList(questTypes)));
+                    Quest quest = new Quest(questName, questDesc, questIcon, maxProgress, convertStringToList(questTypes));
+                    addQuest(quest);
                 }
             }
         } catch (IOException e) {
@@ -421,13 +430,23 @@ public class DBHelper extends SQLiteOpenHelper {
         List<Integer> questTypesList = new ArrayList<>();
 
         //csvString = "0 4 5"
-        String[] values = csvString.split(" ");
+        String[] values = csvString.trim().split(" ");
         //values = ["0"|"4"|"5"]
 
         for (String value : values)
             questTypesList.add(Integer.parseInt(value));
 
         return questTypesList;
+    }
+
+    private String convertListToString(List<Integer> integerList)
+    {
+        String questTypesString = "";
+
+        for (Integer i : integerList)
+            questTypesString = " " + String.valueOf(i);
+
+        return questTypesString;
     }
 
 

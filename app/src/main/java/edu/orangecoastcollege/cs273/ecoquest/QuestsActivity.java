@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestsActivity extends AppCompatActivity {
@@ -34,6 +35,7 @@ public class QuestsActivity extends AppCompatActivity {
         mListedQuestsTextView = (TextView) findViewById(R.id.listedQuestsTextView);
         mQuestsPageListView = (ListView) findViewById(R.id.questsPageListView);
 
+        deleteDatabase(DBHelper.DATABASE_NAME);
         db = new DBHelper(this);
         db.importQuestsFromCSV("quests.csv");
         mAllQuestsList = db.getAllQuests();
@@ -45,11 +47,19 @@ public class QuestsActivity extends AppCompatActivity {
         if (mParkQuestsList == null)
             mParkQuestsList = filterParkQuests();
         mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mParkQuestsList);
+        mQuestsPageListView.setAdapter(mQuestsListAdapter);
     }
 
     private List<Quest> filterParkQuests()
     {
-        return null;
+        List<Quest> parkQuestList = new ArrayList<>();
+        List<Integer> tempIntList;
+        for (Quest quest : mAllQuestsList) {
+            tempIntList = quest.getQuestTypes();
+            if (tempIntList.contains(QuestType.PARK))
+                parkQuestList.add(quest);
+        }
+        return parkQuestList;
     }
 
     public void beachQuests(View v)

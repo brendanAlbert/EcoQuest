@@ -98,6 +98,9 @@ public class Quest implements Parcelable {
 
     // Setter methods:
 
+
+    public void setId(long id) { mId = id; }
+
     /**
      * Method that sets the name of the quest.
      * @param name Name of the quest.
@@ -135,6 +138,19 @@ public class Quest implements Parcelable {
     public List<Integer> getQuestTypes() { return mQuestTypes; }
 
     public void setQuestTypes(List<Integer> questTypes) { mQuestTypes = questTypes; }
+
+    @Override
+    public String toString() {
+        return "Quest{" +
+                "mId=" + mId +
+                ", mName='" + mName + '\'' +
+                ", mDescription='" + mDescription + '\'' +
+                ", mImageName='" + mImageName + '\'' +
+                ", mCurrentProgress=" + mCurrentProgress +
+                ", mMaxProgress=" + mMaxProgress +
+                ", mQuestTypes=" + mQuestTypes +
+                '}';
+    }
 
     // Parcel methods
 

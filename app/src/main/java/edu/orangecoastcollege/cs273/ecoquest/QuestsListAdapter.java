@@ -58,10 +58,11 @@ public class QuestsListAdapter extends ArrayAdapter<Quest> {
             Drawable image = Drawable.createFromStream(stream, quest.getName());
             questIconImageView.setImageDrawable(image);
             // if quest complete setImageDrawable to quest_complete.png
-            //questCompleteStatusImageView.setImageDrawable(R.drawable.quest_complete);
-            // else set to quest_incomplete.png
-            image = Drawable.createFromStream(stream, quest.getImageName());
+            image = Drawable.createFromStream(stream, "quest_complete.png");
             questCompleteStatusImageView.setImageDrawable(image);
+            // else set to quest_incomplete.png
+            //image = Drawable.createFromStream(stream, quest.getImageName());
+            //questCompleteStatusImageView.setImageDrawable(image);
         } catch (IOException e) {
             e.printStackTrace();
         }
