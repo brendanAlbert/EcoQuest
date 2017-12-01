@@ -142,6 +142,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         BADGES_FIELD_NAME,
                         BADGES_FIELD_DESCRIPTION,
                         BADGES_FIELD_IMAGE_NAME,
+                        BADGES_FIELD_CURRENT_PROGRESS,
                         BADGES_FIELD_MAX_PROGRESS},
                 BADGES_KEY_FIELD_ID + "=?",
                 new String[]{String.valueOf(id)},
@@ -496,7 +497,9 @@ public class DBHelper extends SQLiteOpenHelper {
                     String badgeDesc = fields[1].trim();
                     String badgeIcon = fields[2].trim();
                     int maxProgress  = Integer.parseInt(fields[3].trim());
-                    addBadge(new Badge(badgeName, badgeDesc, badgeIcon, maxProgress));
+
+                    Badge badge = new Badge(badgeName, badgeDesc, badgeIcon, maxProgress);
+                    addBadge(badge);
                 }
             }
         } catch (IOException e) {

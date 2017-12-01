@@ -44,6 +44,15 @@ public class Badge implements Parcelable{
         mMaxProgress = maxProgress;
     }
 
+    public Badge(String name, String description, String imageName, int currentProgress,int maxProgress)
+    {
+        mName = name;
+        mDescription = description;
+        mImageName = imageName;
+        mCurrentProgress = currentProgress;
+        mMaxProgress = maxProgress;
+    }
+
     // Parcelable interface uses a private constructor to instantiate objects
     private Badge(Parcel parcel)
     {
