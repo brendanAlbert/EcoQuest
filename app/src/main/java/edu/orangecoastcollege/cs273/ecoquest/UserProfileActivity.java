@@ -22,6 +22,7 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        deleteDatabase(DBHelper.DATABASE_NAME);
         db = new DBHelper(this);
         db.importBadgesFromCSV("badges.csv");
 

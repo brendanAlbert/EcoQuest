@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".BadgesListActivity">
         </activity>
+        <activity android:name=".MapActivity">
+        </activity>
     </application>
 
 </manifest>

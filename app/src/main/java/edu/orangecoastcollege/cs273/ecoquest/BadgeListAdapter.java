@@ -65,6 +65,8 @@ public class BadgeListAdapter extends ArrayAdapter<Badge>{
 
             badgeListLinearLayout.setTag(selectBadge);
             badgeListNameTextView.setText(selectBadge.getName());
+
+            badgeListProgressBar.setMax(selectBadge.getMaxProgress());
             badgeListProgressBar.setProgress(selectBadge.getProgress());
 
             AssetManager am = mContext.getAssets();

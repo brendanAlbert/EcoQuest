@@ -33,4 +33,10 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void viewBadgeList(View view)
+    {
+        Intent intent = new Intent(this, BadgesListActivity.class);
+        startActivity(intent);
+    }
+
 }
