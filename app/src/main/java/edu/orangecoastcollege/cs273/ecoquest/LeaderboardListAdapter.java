@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -76,6 +77,8 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
         }
 
         userNameTextView.setText(user.getUserName());
+        LinearLayout mLeaderboardUserLinearLayout = listItemView.findViewById(R.id.leaderboardUserListItemLinearLayout);
+        mLeaderboardUserLinearLayout.setTag(user);
 
         if (mStatToTrack.equals("points"))
             userPointsLevelsBadgesTextView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(user.getPoints())));

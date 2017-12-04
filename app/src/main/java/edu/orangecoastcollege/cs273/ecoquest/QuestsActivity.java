@@ -1,9 +1,12 @@
 package edu.orangecoastcollege.cs273.ecoquest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,13 +16,8 @@ public class QuestsActivity extends AppCompatActivity {
 
     private DBHelper db;
 
-    private List<Quest> mAllQuestsList     = null;
-    private List<Quest> mBeachQuestsList   = null;
-    private List<Quest> mParkQuestsList    = null;
-    private List<Quest> mCityQuestsList    = null;
-    private List<Quest> mSchoolQuestsList  = null;
-    private List<Quest> mTrashQuestsList   = null;
-    private List<Quest> mRecycleQuestsList = null;
+    private List<Quest> mAllQuestsList;
+    private List<Quest> mFilteredQuestsList;
 
     // All the TextViews and ImageViews and ListView widgets
     private TextView mListedQuestsTextView;
@@ -44,9 +42,8 @@ public class QuestsActivity extends AppCompatActivity {
     public void parkQuests(View v)
     {
         mListedQuestsTextView.setText("All park quests.");
-        if (mParkQuestsList == null)
-            mParkQuestsList = filterParkQuests();
-        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mParkQuestsList);
+        mFilteredQuestsList = filterParkQuests();
+        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
         mQuestsPageListView.setAdapter(mQuestsListAdapter);
     }
 
@@ -66,9 +63,8 @@ public class QuestsActivity extends AppCompatActivity {
     public void beachQuests(View v)
     {
         mListedQuestsTextView.setText("All beach-related quests.");
-        if (mBeachQuestsList == null)
-            mBeachQuestsList = filterBeachQuests();
-        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mBeachQuestsList);
+        mFilteredQuestsList = filterBeachQuests();
+        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
         mQuestsPageListView.setAdapter(mQuestsListAdapter);
 
     }
@@ -89,9 +85,8 @@ public class QuestsActivity extends AppCompatActivity {
     public void cityQuests(View v)
     {
         mListedQuestsTextView.setText("All city-related quests.");
-        if (mCityQuestsList == null)
-            mCityQuestsList = filterCityQuests();
-        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mCityQuestsList);
+        mFilteredQuestsList = filterCityQuests();
+        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
         mQuestsPageListView.setAdapter(mQuestsListAdapter);
     }
 
@@ -111,9 +106,8 @@ public class QuestsActivity extends AppCompatActivity {
     public void schoolQuests(View v)
     {
         mListedQuestsTextView.setText("All quests that take place on school campuses.");
-        if (mSchoolQuestsList == null)
-            mSchoolQuestsList = filterSchoolQuests();
-        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mSchoolQuestsList);
+        mFilteredQuestsList = filterSchoolQuests();
+        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
         mQuestsPageListView.setAdapter(mQuestsListAdapter);
     }
 
@@ -133,9 +127,8 @@ public class QuestsActivity extends AppCompatActivity {
     public void trashQuests(View v)
     {
         mListedQuestsTextView.setText("All quests that involve tossing trash.");
-        if (mTrashQuestsList == null)
-            mTrashQuestsList = filterTrashQuests();
-        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mTrashQuestsList);
+        mFilteredQuestsList = filterTrashQuests();
+        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
         mQuestsPageListView.setAdapter(mQuestsListAdapter);
     }
 
@@ -155,9 +148,8 @@ public class QuestsActivity extends AppCompatActivity {
     public void recycleQuests(View v)
     {
         mListedQuestsTextView.setText("All quests that involve recycling.");
-        if (mRecycleQuestsList == null)
-            mRecycleQuestsList = filterRecycleQuests();
-        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mRecycleQuestsList);
+        mFilteredQuestsList = filterRecycleQuests();
+        mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
         mQuestsPageListView.setAdapter(mQuestsListAdapter);
     }
 
@@ -172,5 +164,18 @@ public class QuestsActivity extends AppCompatActivity {
             }
         }
         return recycleQuestsList;
+    }
+
+    public void viewQuestDetails(View view)
+    {
+        if (view instanceof RelativeLayout)
+        {
+            RelativeLayout selectedLayout = (RelativeLayout) view;
+            Quest quest = (Quest) selectedLayout.getTag();
+            Intent questIntent = new Intent(this, QuestDetailsActivity.class);
+            questIntent.putExtra("quest", quest);
+            Log.i("viewQuestDetails", quest.toString());
+            startActivity(questIntent);
+        }
     }
 }

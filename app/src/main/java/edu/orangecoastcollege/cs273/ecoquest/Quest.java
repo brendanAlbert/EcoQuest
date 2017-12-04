@@ -2,7 +2,9 @@ package edu.orangecoastcollege.cs273.ecoquest;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +23,12 @@ public class Quest implements Parcelable {
     private String mImageName;
     private int mCurrentProgress; // quests can be 0/1, 0/5, 0/10, 0/25, etc..
     private int mMaxProgress;
-    // quest types from the QuestType class will populate this array at their respective indices
+    // quest types from the QuestType class will populate this array
     private List<Integer> mQuestTypes;
 
     public Quest()
     {
-        this(-1, "", "", "avatar.png", -1, null);
+        this(-1, "", "", "avatar.png", -1, new ArrayList<Integer>());
     }
 
     public Quest(String name, String description, String imageName, int maxProgress, List<Integer> questTypes)
@@ -72,7 +74,7 @@ public class Quest implements Parcelable {
         mImageName = parcel.readString();
         mCurrentProgress = parcel.readInt();
         mMaxProgress = parcel.readInt();
-        parcel.readList(mQuestTypes, List.class.getClassLoader());
+        //parcel.readList(mQuestTypes, null);
     }
 
     // Getter methods:
@@ -173,6 +175,7 @@ public class Quest implements Parcelable {
     public static final Creator<Quest> CREATOR = new Creator<Quest>() {
         @Override
         public Quest createFromParcel(Parcel in) {
+            Log.i("createFromParcel", in.toString());
             return new Quest(in);
         }
 

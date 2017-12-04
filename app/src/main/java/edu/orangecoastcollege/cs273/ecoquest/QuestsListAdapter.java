@@ -7,11 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -43,15 +45,18 @@ public class QuestsListAdapter extends ArrayAdapter<Quest> {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View questListItemView = inflater.inflate(mResource, null);
 
+        RelativeLayout mQuestRelativeLayout = questListItemView.findViewById(R.id.questRelativeLayout);
         TextView questNameTextView = questListItemView.findViewById(R.id.questNameTextView);
         TextView questDescriptionTextView = questListItemView.findViewById(R.id.questDescriptionTextView);
         ImageView questIconImageView = questListItemView.findViewById(R.id.questIconImageView);
         ImageView questCompleteStatusImageView = questListItemView.findViewById(R.id.questCompleteStatusImageView);
 
         Quest quest = mQuestsList.get(position);
+        Log.i("quest adapter", quest.toString());
 
         questNameTextView.setText(quest.getName());
         questDescriptionTextView.setText(quest.getDescription());
+        mQuestRelativeLayout.setTag(quest);
 
         AssetManager am = mContext.getAssets();
         try {

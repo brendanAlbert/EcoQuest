@@ -1,10 +1,13 @@
 package edu.orangecoastcollege.cs273.ecoquest;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by brendantyleralbert on 11/19/17.
  */
 
-public class User {
+public class User implements Parcelable {
 
     private long mId;
     private String mUserName;
@@ -23,6 +26,16 @@ public class User {
     }
 
     public User(String userName, int level, int points, int howManyBadges, String profilePictureName)  { this(-1, userName, level, points, howManyBadges, profilePictureName); }
+
+    private User(Parcel parcel)
+    {
+        mId = parcel.readLong();
+        mUserName = parcel.readString();
+        mLevel = parcel.readInt();
+        mPoints = parcel.readInt();
+        mHowManyBadges = parcel.readInt();
+        mProfilePictureName = parcel.readString();
+    }
 
     public long getId() {
         return mId;
@@ -76,4 +89,26 @@ public class User {
                 ", mProfilePictureName='" + mProfilePictureName + '\'' +
                 '}';
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int i) {
+        dest.writeLong(mId);
+        dest.writeString(mUserName);
+        dest.writeInt(mLevel);
+        dest.writeInt(mPoints);
+        dest.writeInt(mHowManyBadges);
+        dest.writeString(mProfilePictureName);
+    }
+
+    @Override
+    public int describeContents() { return 0; }
+
+    public static final Creator<User> CREATOR = new Creator<User>()
+    {
+        @Override
+        public User createFromParcel(Parcel parcel) { return new User(parcel); }
+
+        @Override
+        public User[] newArray(int size) { return new User[size]; }
+    };
 }

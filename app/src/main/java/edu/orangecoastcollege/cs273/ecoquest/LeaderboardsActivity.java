@@ -1,8 +1,10 @@
 package edu.orangecoastcollege.cs273.ecoquest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -146,5 +148,17 @@ public class LeaderboardsActivity extends AppCompatActivity {
             badgesRankArrayList.add(user.getId());
 
         return mostBadgesUserList;
+    }
+
+    public void visitUserProfile(View view)
+    {
+        if ( view instanceof LinearLayout )
+        {
+            LinearLayout selectedLayout = (LinearLayout) view;
+            User user = (User) selectedLayout.getTag();
+            Intent userIntent = new Intent(this, UserProfileActivity.class);
+            userIntent.putExtra("user", user);
+            startActivity(userIntent);
+        }
     }
 }

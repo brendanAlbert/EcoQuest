@@ -16,6 +16,16 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
+    <TextView
+        android:id="@+id/profileUsernameTextView"
+        android:padding="10dp"
+        android:layout_below="@+id/profilePictureImageView"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:text="Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Spinner
         android:id="@+id/spinnerTitle"
         android:layout_width="match_parent"
