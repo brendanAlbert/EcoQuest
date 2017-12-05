@@ -56,7 +56,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         mUserImageView = (ImageView) findViewById(R.id.profilePictureImageView);
         mUsernameTextView = (TextView) findViewById(R.id.profileUsernameTextView);
-        mUsernameTextView.setText(mUser.getUserName());
+        mUsernameTextView.setText(mUser.getUserName() + "\nLevel: " + String.valueOf(mUser.getLevel()));
         mUserBadgesEarnedTextView = (TextView) findViewById(R.id.badgesEarnedTextView);
         mUserPointsEarnedTextView = (TextView) findViewById(R.id.pointsEarnedTextView);
         mUserBadgesEarnedTextView.setText(String.valueOf(mUser.getHowManyBadges()) + " / 20 Badges");
