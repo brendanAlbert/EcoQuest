@@ -33,7 +33,7 @@
         android:layout_below="@+id/profilePictureImageView"
         android:gravity="center"
         android:textSize="24sp"
-        android:text="Username"
+        android:text="@string/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -41,7 +41,7 @@
         android:id="@+id/spinnerTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose a Title"
+        android:text="@string/choose_a_title"
         android:layout_below="@+id/profilePictureImageView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"/>
@@ -61,8 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20dp"
-            android:text="0/10 Badge"/>
+            android:textSize="20sp"
+            android:text="@string/user_badges_earned_text_view"/>
 
         <TextView
             android:id="@+id/pointsEarnedTextView"
@@ -71,8 +71,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="20dp"
-            android:text="250 points"/>
+            android:textSize="20sp"
+            android:text="@string/user_points_earned_text_view"/>
     </LinearLayout>
 
     <ListView

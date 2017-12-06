@@ -3,35 +3,31 @@ package edu.orangecoastcollege.cs273.ecoquest;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.drawable.Drawable;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.provider.MediaStore;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Manifest;
-
-import static edu.orangecoastcollege.cs273.ecoquest.R.id.image;
-import static edu.orangecoastcollege.cs273.ecoquest.R.id.profilePictureImageView;
-import static edu.orangecoastcollege.cs273.ecoquest.R.id.userImageView;
 import java.util.Locale;
+
+import static edu.orangecoastcollege.cs273.ecoquest.R.id.profilePictureImageView;
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -84,8 +80,8 @@ public class UserProfileActivity extends AppCompatActivity {
         mUsernameTextView.setText(mUser.getUserName() + "\nLevel: " + String.valueOf(mUser.getLevel()));
         mUserBadgesEarnedTextView = (TextView) findViewById(R.id.badgesEarnedTextView);
         mUserPointsEarnedTextView = (TextView) findViewById(R.id.pointsEarnedTextView);
-        mUserBadgesEarnedTextView.setText(String.valueOf(mUser.getHowManyBadges()) + " / 20 Badges");
-        mUserPointsEarnedTextView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(mUser.getPoints())) + " Points");
+        mUserBadgesEarnedTextView.setText(getString(R.string.user_badges_earned_text_view, String.valueOf(mUser.getHowManyBadges()), "20"));
+        mUserPointsEarnedTextView.setText(getString(R.string.user_points_earned_text_view, String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(mUser.getPoints()))));
         AssetManager am = this.getAssets();
         try {
             InputStream stream = am.open(mUser.getProfilePictureName());

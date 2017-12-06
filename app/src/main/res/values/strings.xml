@@ -5,7 +5,12 @@
     <string name="profile">profile</string>
     <string name="badges">badges</string>
     <string name="boards">boards</string>
-    <string name="quests">Quests!</string>
+    <string name="quests">Quests !</string>
     <string name="badgeListTitle">Badges</string>
+    <string name="tap_above_buttons_to_see_quests_available_for_each_area">Tap above buttons to see quests available for each area</string>
+    <string name="username">Username</string>
+    <string name="choose_a_title">Choose a Title</string>
+    <string name="user_badges_earned_text_view">%1$s / %2$s Badges</string>
+    <string name="user_points_earned_text_view">%1$s Points</string>
 
 </resources>
