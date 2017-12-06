@@ -1,6 +1,7 @@
 package edu.orangecoastcollege.cs273.ecoquest;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
 import android.location.Location;
@@ -11,7 +12,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 //import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.common.ConnectionResult;
@@ -196,6 +200,19 @@ public class MapActivity extends AppCompatActivity
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
         handleNewLocation(mLastLocation);
+    }
+
+    public void viewQuestDetails(View view)
+    {
+        if (view instanceof RelativeLayout)
+        {
+            RelativeLayout selectedLayout = (RelativeLayout) view;
+            Quest quest = (Quest) selectedLayout.getTag();
+            Intent questIntent = new Intent(this, QuestDetailsActivity.class);
+            questIntent.putExtra("quest", quest);
+            Log.i("viewQuestDetails", quest.toString());
+            startActivity(questIntent);
+        }
     }
 }
 
