@@ -10,32 +10,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".QuestsActivity">
+        <activity android:name=".QuestsActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".DashboardActivity">
+        <activity android:name=".DashboardActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".BadgeDetailsActivity">
+        <activity android:name=".BadgeDetailsActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".LoginSignupActivity">
+        <activity android:name=".LoginSignupActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".LeaderboardsActivity">
+        <activity android:name=".LeaderboardsActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".QuestChainActivity">
+        <activity android:name=".QuestChainActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".UserProfileActivity">
+        <activity android:name=".UserProfileActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".BadgesListActivity">
+        <activity android:name=".BadgesListActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".MapActivity">
+        <activity android:name=".MapActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".QuestDetailsActivity">
+        <activity android:name=".QuestDetailsActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
