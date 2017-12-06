@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<GridLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:rowCount="7"
+    android:columnCount="1"
     android:layout_height="match_parent"
     android:background="@drawable/dashboard_background_hex_gradient"
     tools:context="edu.orangecoastcollege.cs273.ecoquest.DashboardActivity">
 
     <LinearLayout
+        android:layout_row="3"
         android:id="@+id/firstRowLinearLayout"
         android:layout_width="match_parent"
         android:layout_marginTop="200dp"
@@ -34,8 +37,8 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_row="4"
         android:id="@+id/secondRowLinearLayout"
-        android:layout_below="@id/firstRowLinearLayout"
         android:layout_width="match_parent"
         style="@style/LinearLayoutHeight" >
 
@@ -61,8 +64,8 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_row="5"
         android:id="@+id/thirdRowLinearLayout"
-        android:layout_below="@+id/secondRowLinearLayout"
         android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:background="@color/cardview_light_background"
@@ -80,11 +83,31 @@
             android:onClick="questsPage"
             android:layout_height="match_parent"/>
 
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_row="6"
+        android:id="@+id/fourthRowLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/cardview_light_background"
+        style="@style/LinearLayoutHeight" >
 
-
+        <Button
+            android:id="@+id/turnInQuestButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="#aba"
+            android:text="@string/complete_a_quest"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="#eeffee"
+            android:onClick="completeAQuest"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 
 
-</RelativeLayout>
+</GridLayout>
