@@ -32,5 +32,10 @@ public class Title
      */
     public long getId() { return mId; }
 
+    public void setName(String name) { mName = name; }
+
+    public void setId(long id) { mId = id; }
+
+
 
 }

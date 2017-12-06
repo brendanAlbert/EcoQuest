@@ -62,6 +62,19 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TITLE_KEY_FIELD_ID = "_id";
     private static final String TITLE_FIELD_NAME = "name";
 
+    // Define the fields (column names) for the Location table
+    //TASK: DEFINE THE FIELDS (COLUMN NAMES) FOR THE CAFFEINE LOCATIONS TABLE
+    private static final String LOCATIONS_TABLE = "Locations";
+    private static final String LOCATIONS_KEY_FIELD_ID = "_id";
+    private static final String FIELD_NAME = "name";
+    private static final String FIELD_ADDRESS = "address";
+    private static final String FIELD_CITY = "city";
+    private static final String FIELD_STATE = "state";
+    private static final String FIELD_ZIP_CODE = "zip_code";
+    private static final String FIELD_PHONE = "phone";
+    private static final String FIELD_LATITUDE = "latitude";
+    private static final String FIELD_LONGITUDE = "longitude";
+
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

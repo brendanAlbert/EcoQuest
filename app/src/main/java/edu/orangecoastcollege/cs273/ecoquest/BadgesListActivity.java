@@ -20,6 +20,7 @@ public class BadgesListActivity extends AppCompatActivity {
 
         deleteDatabase(DBHelper.DATABASE_NAME);
         db = new DBHelper(this);
+        db.importBadgesFromCSV("badges.csv");
 
         badgesList = db.getAllBadges();
         badgeListAdapter = new BadgeListAdapter(this, R.layout.badge_list_item, badgesList);

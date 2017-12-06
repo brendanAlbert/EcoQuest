@@ -14,7 +14,7 @@ public class User implements Parcelable {
     private int mLevel;
     private int mPoints;
     private int mHowManyBadges;
-    private String mProfilePictureName;
+    private String mProfilePictureName;  // Storing URI in this variable - Casey
 
     public User(long id, String userName, int level, int points, int howManyBadges, String profilePictureName) {
         mId = id;

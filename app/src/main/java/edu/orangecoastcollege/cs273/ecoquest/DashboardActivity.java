@@ -39,4 +39,10 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void viewMapActivity(View view)
+    {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
+
 }
