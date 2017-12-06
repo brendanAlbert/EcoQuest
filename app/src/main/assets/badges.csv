@@ -1,6 +1,9 @@
 Sunset Badge, earned by completing a quest at the beach at sunset, sunset_badge.png, 1
 Beach Warden, earned by completing 3 quests only available at the beach, beach_warden.png, 3
 Newport Beach Protector, earned by completing 3 quests in Newport Beach, newport_beach_protector.png, 3
+Friend of the Beach lvl [1], earned by completing 2 beach quests, friend_of_the_beach_lvl1.png, 2
+Friend of the Beach lvl [2], earned by completing 10 beach quests, friend_of_the_beach_lvl2.png, 10
+Friend of the Beach lvl [3], earned by completing 20 beach quests, friend_of_the_beach_lvl3.png, 20
 Visited Upper Back Bay, earned by visiting Upper Back Bay and collecting or recycling 1 item, upper_back_bay_badge.png, 1
 Thinking Green, earned by completing 5 quests, thinking_green.png, 5
 Journeyman Butt Collector, earned by collecting 5 cigarette butts, journeyman_buttcollector.png, 5
@@ -8,14 +11,26 @@ Squire Butt Collector, earned by collecting 10 cigarette butts, squire_buttcolle
 Adept Butt Collector, earned by collecting 25 cigarette butts, adept_buttcollector.png, 25
 Instructor Butt Collector, earned by collecting 50 cigarette butts, instructor_buttcollector.png, 50
 Master Butt Collector, earned by collecting 100 cigarette butts, master_buttcollector.png, 100
+Eco Scholar Level 1, earned by collecting or recycling 2 items on a school campus, eco_scholar_lvl1.png, 2
+Eco Scholar Level 2, earned by collecting or recycling 10 items on a school campus, eco_scholar_lvl2.png, 10
+Eco Scholar Level 3, earned by collecting or recycling 20 items on a school campus, eco_scholar_lvl3.png, 20
+Eco Scholar Level 4, earned by collecting or recycling 40 items on a school campus, eco_scholar_lvl4.png, 40
+Eco Scholar Level 5, earned by collecting or recycling 80 items on a school campus, eco_scholar_lvl5.png, 80
 Level 1 Water Bottle Recycler, earned by recycling 5 water bottles, level1_waterbottle_recycler.png, 5
 Level 2 Water Bottle Recycler, earned by recycling 15 water bottles, level2_waterbottle_recycler.png, 15
 Level 3 Water Bottle Recycler, earned by recycling 30 water bottles, level3_waterbottle_recycler.png, 30
+Level 1 Cup Collector, earned by throwing away or recycling 1 cup, lvl1_cup_collector.png, 1
+Level 2 Cup Collector, earned by throwing away or recycling 5 cups, lvl2_cup_collector.png, 5
+Level 3 Cup Collector, earned by throwing away or recycling 10 cups, lvl3_cup_collector.png, 10
+Level 4 Cup Collector, earned by throwing away or recycling 20 cups, lvl4_cup_collector.png, 20
 First Place Medal, earned by reaching first place in one of the leaderboards, 1st_place_medal.png, 1
 Second Place Medal, earned by reaching second place in one of the leaderboards, 2nd_place_medal.png, 1
 Third Place Medal, earned by reaching third place in one of the leaderboards, 3rd_place_medal.png, 1
 Meadow Muffin Knight, only the bravest of ecoQuesters will do battle with a meadow muffin; throw away 1 dog poo, meadow_muffin_knight.png, 1
 Turd Templar, only the bravest Meadow Muffin Knights become Turd Templars; throw away 5 dog poos, turd_templar.png, 5
-PooPoo Paladin, only the bravest Turd Templars become PooPoo Paladins; pickup and throw away 10 dog poos, poopoo_paladin.png, 10
-Chevalier de Caca, only the bravest PooPoo paladins survive single combat against 25 dog poos, chevalier_de_caca.png, 25
+PooPoo Paladin, only the bravest Turd Templars become PooPoo Paladins; pick up and throw away 10 dog poos, poopoo_paladin.png, 10
+Chevalier du Caca, only the bravest PooPoo paladins survive single combat against 25 dog poos, chevalier_du_caca.png, 25
 Halloween Collector, find 5 bits of trash or candy wrappers left on the ground on Halloween and dispose of them, halloween_collector.png, 5
+Eco Ninja, earned by completing 15 quests, eco_ninja.png, 15
+Friend of the Parks {1}, earned by completing 2 quests at a park, friend_of_the_parks_lvl1.png, 2
+Friend of the Parks {2}, earned by completing 5 quests at a park, friend_of_the_parks_lvl2.png, 5
