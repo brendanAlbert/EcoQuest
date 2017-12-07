@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:padding="5dp"
+    android:layout_marginTop="20dp"
     tools:context="edu.orangecoastcollege.cs273.ecoquest.TurnInQuestActivity">
 
     <RelativeLayout
@@ -25,15 +26,24 @@
                 android:paddingEnd="10dp"
                 android:gravity="left"
                 android:layout_gravity="center"
-                android:layout_width="175dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:text="Dog Poo"/>
             <ImageView
+                android:id="@+id/dogPooAddButton"
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:onClick="spinAnimation"
                 app:srcCompat="@drawable/add_item_icon"/>
+            <ImageView
+                android:id="@+id/pooPlus1Icon"
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/green_plus1_icon"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/turnInQuestRow1"
@@ -50,15 +60,24 @@
                 android:paddingEnd="10dp"
                 android:gravity="left"
                 android:layout_gravity="center"
-                android:layout_width="175dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:text="Cigarette Butt"/>
             <ImageView
+                android:id="@+id/cigButtAddButton"
                 android:layout_gravity="center"
                 android:layout_width="60dp"
+                android:onClick="shrinkGrowAnimation"
                 android:layout_height="60dp"
                 app:srcCompat="@drawable/add_item_icon"/>
+            <ImageView
+                android:id="@+id/cigPlus1Icon"
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/green_plus1_icon"/>
         </LinearLayout>
 
         <LinearLayout
@@ -76,15 +95,24 @@
                 android:paddingLeft="10dp"
                 android:gravity="left"
                 android:layout_gravity="center"
-                android:layout_width="175dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:text="Coffee Cup"/>
             <ImageView
+                android:id="@+id/coffeeCupButton"
                 android:layout_gravity="end"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:onClick="coffeeCupPlusOneAnimation"
                 app:srcCompat="@drawable/add_item_icon"/>
+            <ImageView
+                android:id="@+id/coffeeCupPlus1Icon"
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/green_plus1_icon"/>
         </LinearLayout>
 
         <LinearLayout
@@ -102,15 +130,24 @@
                 android:paddingStart="10dp"
                 android:gravity="start"
                 android:layout_gravity="center"
-                android:layout_width="175dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:text="Plastic Bottle"/>
             <ImageView
+                android:id="@+id/plasticBottleAddButton"
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:onClick="plasticBottlePlusOneAnimation"
                 app:srcCompat="@drawable/add_item_icon"/>
+            <ImageView
+                android:id="@+id/plasticBottlePlus1Icon"
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/green_plus1_icon"/>
         </LinearLayout>
 
         <LinearLayout
@@ -128,15 +165,24 @@
                 android:paddingStart="10dp"
                 android:gravity="start"
                 android:layout_gravity="center"
-                android:layout_width="175dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:text="Aluminum Can"/>
             <ImageView
+                android:id="@+id/aluminumCanAddButton"
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:onClick="aluminumCanPlusOneAnimation"
                 app:srcCompat="@drawable/add_item_icon"/>
+            <ImageView
+                android:id="@+id/aluminumCanPlus1Icon"
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/green_plus1_icon"/>
         </LinearLayout>
 
         <LinearLayout
@@ -154,15 +200,24 @@
                 android:paddingStart="10dp"
                 android:gravity="start"
                 android:layout_gravity="center"
-                android:layout_width="175dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:text="Drink Cup"/>
             <ImageView
+                android:id="@+id/drinkCupAddButton"
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:onClick="drinkCupPlusOneAnimation"
                 app:srcCompat="@drawable/add_item_icon"/>
+            <ImageView
+                android:id="@+id/drinkCupPlus1Icon"
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/green_plus1_icon"/>
         </LinearLayout>
 
         <LinearLayout
@@ -180,15 +235,24 @@
                 android:paddingStart="10dp"
                 android:gravity="start"
                 android:layout_gravity="center"
-                android:layout_width="175dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:text="Scrape Gum"/>
             <ImageView
+                android:id="@+id/scrapeGumAddButton"
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:onClick="scrapeGumPlusOneAnimation"
                 app:srcCompat="@drawable/add_item_icon"/>
+            <ImageView
+                android:id="@+id/scrapeGumPlus1Icon"
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/green_plus1_icon"/>
         </LinearLayout>
 
         <LinearLayout
@@ -206,15 +270,24 @@
                 android:paddingStart="10dp"
                 android:gravity="start"
                 android:layout_gravity="center"
-                android:layout_width="175dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:text="Miscellaneous"/>
             <ImageView
+                android:id="@+id/miscAddButton"
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:onClick="miscPlusOneAnimation"
                 app:srcCompat="@drawable/add_item_icon"/>
+            <ImageView
+                android:id="@+id/miscPlus1Icon"
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/green_plus1_icon"/>
         </LinearLayout>
     </RelativeLayout>
 
