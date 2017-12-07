@@ -101,7 +101,7 @@
                 android:text="Coffee Cup"/>
             <ImageView
                 android:id="@+id/coffeeCupButton"
-                android:layout_gravity="end"
+                android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:onClick="coffeeCupPlusOneAnimation"
