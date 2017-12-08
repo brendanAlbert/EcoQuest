@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * Quest is a Model class of the quest that can be completed.
+ *
+ * Quest can be accessed from the QuestActivity and the MapActivity displaying each quest
+ * inside of a listview.
+ *
  * Created by CaseyTea on 11/16/17.
  *
  * Edits made by Brendan include:
@@ -26,11 +32,27 @@ public class Quest implements Parcelable {
     // quest types from the QuestType class will populate this array
     private List<Integer> mQuestTypes;
 
+    /**
+     * Default constructor of the Quest class using default arguments to be passed.
+     *
+     */
     public Quest()
     {
         this(-1, "", "", "avatar.png", -1, new ArrayList<Integer>());
     }
 
+    /**
+     * Parameterize constructor using all the member variables except id and current progress to be
+     * used as arguments.
+     *
+     * Current progress set to 0 since no progress can be logged if quest has just been created.
+     *
+     * @param name
+     * @param description
+     * @param imageName
+     * @param maxProgress
+     * @param questTypes
+     */
     public Quest(String name, String description, String imageName, int maxProgress, List<Integer> questTypes)
     {
         mName = name;
@@ -41,6 +63,19 @@ public class Quest implements Parcelable {
         mQuestTypes = questTypes;
     }
 
+    /**
+     * Parameterize constructor using all member variables except current progress to be
+     * used as arguments.
+     *
+     * Current progress set to 0 since no progress can be logged if quest has just been created.
+     *
+     * @param id
+     * @param name
+     * @param description
+     * @param imageName
+     * @param maxProgress
+     * @param questTypes
+     */
     public Quest(long id, String name, String description, String imageName, int maxProgress, List<Integer> questTypes)
     {
         mId = id;
@@ -53,6 +88,16 @@ public class Quest implements Parcelable {
 
     }
 
+    /**
+     * Parameterize constructor using all member variables to be used as arguments.
+     * @param id
+     * @param name
+     * @param description
+     * @param imageName
+     * @param currentProgress
+     * @param maxProgress
+     * @param questTypes
+     */
     public Quest(long id, String name, String description, String imageName, int currentProgress, int maxProgress, List<Integer> questTypes)
     {
         mId = id;
@@ -65,7 +110,10 @@ public class Quest implements Parcelable {
 
     }
 
-    // Parcelable interface uses a private constructor to instantiate objects
+    /**
+     * Parcelable interface uses a private constructor to instantiate objects
+     * @param parcel
+     */
     private Quest(Parcel parcel)
     {
         mId = parcel.readLong();
@@ -100,7 +148,10 @@ public class Quest implements Parcelable {
 
     // Setter methods:
 
-
+    /**
+     * method to set the id of the quest
+     * @param id
+     */
     public void setId(long id) { mId = id; }
 
     /**
@@ -121,18 +172,34 @@ public class Quest implements Parcelable {
      */
     public void setImageName(String imageName) { mImageName = imageName; }
 
+    /**
+     * Method that gets the current progress of the quest and returns it as an int.
+     * @return
+     */
     public int getCurrentProgress() {
         return mCurrentProgress;
     }
 
+    /**
+     *  Method that sets the current progress of the quest as an int argument.
+     * @param currentProgress
+     */
     public void setCurrentProgress(int currentProgress) {
         mCurrentProgress = currentProgress;
     }
 
+    /**
+     * Method that returns the max progress of the quest as an int.
+     * @return
+     */
     public int getMaxProgress() {
         return mMaxProgress;
     }
 
+    /**
+     * Method to set the max progress of the quest with an int argument.
+     * @param maxProgress
+     */
     public void setMaxProgress(int maxProgress) {
         mMaxProgress = maxProgress;
     }
@@ -141,6 +208,11 @@ public class Quest implements Parcelable {
 
     public void setQuestTypes(List<Integer> questTypes) { mQuestTypes = questTypes; }
 
+    /**
+     * toString is used to provide a String representation of the User object.
+     * This method is very helpful for debugging.
+     * @return
+     */
     @Override
     public String toString() {
         return "Quest{" +
@@ -155,7 +227,13 @@ public class Quest implements Parcelable {
     }
 
     // Parcel methods
-
+    /**
+     * writeToParcel is a method that must be implemented to make a User parcelable.
+     * It is important to note that the order the Parcel is written in
+     * is the same order it must be read.
+     * @param dest
+     * @param flags
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(mId);
@@ -167,18 +245,38 @@ public class Quest implements Parcelable {
         dest.writeList(mQuestTypes);
     }
 
+    /**
+     * describeContents must be implemented when using Parcelable.
+     * @return
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+
+    /**
+     * Creator<User> is an anonymous inner class that must be implemented
+     * when using Parcelable.
+     */
     public static final Creator<Quest> CREATOR = new Creator<Quest>() {
+
+        /**
+         * createFromParcel must be implemented when using the Creator inner class.
+         * @param in
+         * @return
+         */
         @Override
         public Quest createFromParcel(Parcel in) {
             Log.i("createFromParcel", in.toString());
             return new Quest(in);
         }
 
+        /**
+         * newArray must be implemented when using the Creator inner class.
+         * @param size
+         * @return
+         */
         @Override
         public Quest[] newArray(int size) {
             return new Quest[size];

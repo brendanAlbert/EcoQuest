@@ -23,6 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * BadgeListAdapter is an ArrayAdapter of Badges.
+ *
+ * This class inflates views in a ListView using the getView method.
+ *
+ * Views are connected to the respected Badge that is gotten from the list of Badges passed into
+ * the constructor.
+ *
  * Created by CaseyTea on 11/20/17.
  */
 
@@ -49,6 +56,16 @@ public class BadgeListAdapter extends ArrayAdapter<Badge>{
             mBadgeList = badges;
         }
 
+    /**
+     * getView method views are wired to the respective Badge object from the List of Badges passed
+     * into the constructor. The corrent TextViews and ImageViews are set using the data stored in
+     * the Badge object.
+     *
+     * @param pos
+     * @param convertView
+     * @param parent
+     * @return
+     */
         @Override
         public View getView(int pos, View convertView, ViewGroup parent)
         {

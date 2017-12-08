@@ -11,8 +11,21 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * BadgeDetailsActivity handles when a badge from the list view is selected.
+ * When selected this activity is inflated with the appropriate data from the
+ * Badge object.
+ *
+ */
 public class BadgeDetailsActivity extends AppCompatActivity {
 
+    /**
+     * onCreate links all the TextViews/ImageView.
+     *
+     * All the views are populated with data from parceled Badges
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -61,6 +61,12 @@ public class UserProfileActivity extends AppCompatActivity {
     private ImageView mCaptainImage;
     private Animation captainAnimation;
 
+    /**
+     * onCreate() populates the views for the UserProfile.
+     * Populates badges from data base to put into a list to display in the views.
+     * Displays points and badges the user has in textview.
+     * @param savedInstanceState contains the state of the app since it was list minimized.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +117,10 @@ public class UserProfileActivity extends AppCompatActivity {
         accelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         mShakeDetector = new ShakeDetector(new ShakeDetector.OnShakeListener() {
+            /**
+             * onShake method override used shake detector class to have
+             * animation activated when "shake" has been performed.
+             */
             @Override
             public void onShake() {
                 Log.i("onShake called", "OnShake was called");
@@ -123,6 +133,12 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     /* Shake methods */
+
+    /**
+     * onResume method called after onStart; when the user first starts the app, or
+     * it can be called after the user returns from a different app or activity.
+     *
+     */
     @Override
     protected void onResume()
     {
@@ -130,6 +146,9 @@ public class UserProfileActivity extends AppCompatActivity {
         mSensorManager.registerListener(mShakeDetector, accelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
+    /**
+     * onStop method called when the activity is finished or destroyed by the system.
+     */
     @Override
     protected void onStop()
     {
@@ -139,6 +158,11 @@ public class UserProfileActivity extends AppCompatActivity {
 
     /* Shake methods End */
 
+    /**
+     * Method that loads intent when badges are clicked in the list view.
+     * Populates the details page from the selected object.
+     * @param view the view that is called this method.
+     */
     public void viewBadgeDetails(View view)
     {
         if (view instanceof LinearLayout)
@@ -156,6 +180,13 @@ public class UserProfileActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Called from onCreate to set the ImageView.
+     * Allowing the user to set the profile picture on the account.
+     * @param context
+     * @param resId
+     * @return
+     */
     public static Uri getUriFromResource(Context context, int resId)
     {
         Resources res = context.getResources();
@@ -169,6 +200,14 @@ public class UserProfileActivity extends AppCompatActivity {
         return Uri.parse(uri);
 
     }
+
+    /**
+     * This method checks if the user had allowed access to camera, read storage,
+     * and write storage permissions.
+     * If permission is allowed, gallery intent is loaded from onActivityResult method.
+     * If there is not permission the user will be prompted again to allow permission.
+     * @param view The view that is called this method.
+     */
 
     public void selectProfilePicture(View view)
     {
@@ -210,6 +249,14 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is called once permission had been granted to load
+     * gallery intent allowing the user to select an image.
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data The intent the data is loaded to
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -7,6 +7,10 @@ import android.hardware.SensorManager;
 
 /**
  * Created by CaseyTea on 12/7/17.
+ *
+ * ShakeDetoctor class used SensorEventListener to detect if
+ * the device has been shaken.
+ *
  */
 
 public class ShakeDetector implements SensorEventListener{
@@ -19,11 +23,22 @@ public class ShakeDetector implements SensorEventListener{
 
     private OnShakeListener mListener;
 
+    /**
+     * Method to set the listener.
+     * @param listener the new listener to be set.
+     */
     public ShakeDetector(OnShakeListener listener)
     {
         mListener = listener;
     }
 
+    /**
+     * Method to detect changes to the sensor all the time.
+     * Checking which sensor type is being used.
+     * Checks to see if the conditions have been met inorder to set off
+     * the shake event.
+     * @param sensorEvent when a sensor even is detected and passes in.
+     */
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
 
@@ -56,6 +71,13 @@ public class ShakeDetector implements SensorEventListener{
         }
     }
 
+    /**
+     * Must be implemented because SensorEventListener interface is being used
+     * Method currently does nothing.
+     *
+     * @param sensor
+     * @param i
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
         // Do nothing, not being used
@@ -65,6 +87,9 @@ public class ShakeDetector implements SensorEventListener{
     // a true shake occurs. Interface = contract (method declaration WITHOUT implementation)
     // Some other class has to implement the method.
 
+    /**
+     * True shake occurs.
+     */
     public interface OnShakeListener
     {
         void onShake();
