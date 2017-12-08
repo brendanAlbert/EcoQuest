@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,9 +18,10 @@ import java.util.List;
 /**
  * QuestsActivity is the controller for the Activity/Page where Users can view all the available
  * quests.  There are six ImageViews being used as buttons.  We don't even wire them up here,
- * we simply use different methods for those Views to call when they are tapped on.
+ * we simply use different methods for those Views to call when they are tapped.
  *
  * The member variables include:
+ *   - a custom bounce Animation
  *   - a DBHelper
  *   - two Lists of Quests, a List of all Quests, and a List that is filtered based
  *      on the button the User tapped.
@@ -32,6 +36,15 @@ import java.util.List;
  * in the ListView, for 14 methods.
  */
 public class QuestsActivity extends AppCompatActivity {
+
+    private Animation subtleBounceAnimation;
+
+    private ImageView parkQuestsButton;
+    private ImageView beachQuestsButton;
+    private ImageView cityQuestsButton;
+    private ImageView schoolQuestsButton;
+    private ImageView trashQuestsButton;
+    private ImageView recycleQuestsButton;
 
     private DBHelper db;
 
@@ -63,6 +76,13 @@ public class QuestsActivity extends AppCompatActivity {
         mListedQuestsTextView = (TextView) findViewById(R.id.listedQuestsTextView);
         mQuestsPageListView = (ListView) findViewById(R.id.questsPageListView);
 
+        parkQuestsButton = (ImageView) findViewById(R.id.parkQuestsButton);
+        beachQuestsButton = (ImageView) findViewById(R.id.beachQuestsButton);
+        cityQuestsButton = (ImageView) findViewById(R.id.cityQuestsButton);
+        schoolQuestsButton = (ImageView) findViewById(R.id.schoolQuestsButton);
+        trashQuestsButton = (ImageView) findViewById(R.id.trashQuestsButton);
+        recycleQuestsButton = (ImageView) findViewById(R.id.recycleQuestsButton);
+
         deleteDatabase(DBHelper.DATABASE_NAME);
         db = new DBHelper(this);
         db.importQuestsFromCSV("quests.csv");
@@ -71,6 +91,7 @@ public class QuestsActivity extends AppCompatActivity {
 
     /**
      * parkQuests is called when the user taps the top left park button.
+     * The bounce animation is loaded and started on the button.
      * The TextView is updated to reflect this action.
      * The filtered quests list is populated with only park quests.
      * The QuestsListAdapter is instantiated using 'this' context, the quest_list_item layout,
@@ -80,6 +101,8 @@ public class QuestsActivity extends AppCompatActivity {
      */
     public void parkQuests(View v)
     {
+        subtleBounceAnimation = AnimationUtils.loadAnimation(this, R.anim.subtle_bounce_anim);
+        parkQuestsButton.startAnimation(subtleBounceAnimation);
         mListedQuestsTextView.setText(R.string.all_park_quests);
         mFilteredQuestsList = filterParkQuests();
         mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
@@ -101,6 +124,7 @@ public class QuestsActivity extends AppCompatActivity {
 
     /**
      * beachQuests is called when the user taps the top middle beach button.
+     * The bounce animation is loaded and started on the button.
      * The TextView is updated to reflect this action.
      * The filtered quests list is populated with only beach quests.
      * The QuestsListAdapter is instantiated using 'this' context, the quest_list_item layout,
@@ -110,6 +134,8 @@ public class QuestsActivity extends AppCompatActivity {
      */
     public void beachQuests(View v)
     {
+        subtleBounceAnimation = AnimationUtils.loadAnimation(this, R.anim.subtle_bounce_anim);
+        beachQuestsButton.startAnimation(subtleBounceAnimation);
         mListedQuestsTextView.setText(R.string.beach_quests);
         mFilteredQuestsList = filterBeachQuests();
         mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
@@ -132,6 +158,7 @@ public class QuestsActivity extends AppCompatActivity {
 
     /**
      * cityQuests is called when the user taps the top right city button.
+     * The bounce animation is loaded and started on the button.
      * The TextView is updated to reflect this action.
      * The filtered quests list is populated with only city quests.
      * The QuestsListAdapter is instantiated using 'this' context, the quest_list_item layout,
@@ -141,6 +168,8 @@ public class QuestsActivity extends AppCompatActivity {
      */
     public void cityQuests(View v)
     {
+        subtleBounceAnimation = AnimationUtils.loadAnimation(this, R.anim.subtle_bounce_anim);
+        cityQuestsButton.startAnimation(subtleBounceAnimation);
         mListedQuestsTextView.setText(R.string.all_city_quests);
         mFilteredQuestsList = filterCityQuests();
         mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
@@ -162,6 +191,7 @@ public class QuestsActivity extends AppCompatActivity {
 
     /**
      * schoolQuests is called when the user taps the bottom left school button.
+     * The bounce animation is loaded and started on the button.
      * The TextView is updated to reflect this action.
      * The filtered quests list is populated with only school quests.
      * The QuestsListAdapter is instantiated using 'this' context, the quest_list_item layout,
@@ -171,6 +201,8 @@ public class QuestsActivity extends AppCompatActivity {
      */
     public void schoolQuests(View v)
     {
+        subtleBounceAnimation = AnimationUtils.loadAnimation(this, R.anim.subtle_bounce_anim);
+        schoolQuestsButton.startAnimation(subtleBounceAnimation);
         mListedQuestsTextView.setText(R.string.all_school_quests);
         mFilteredQuestsList = filterSchoolQuests();
         mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
@@ -192,6 +224,7 @@ public class QuestsActivity extends AppCompatActivity {
 
     /**
      * trashQuests is called when the user taps the bottom middle trash button.
+     * The bounce animation is loaded and started on the button.
      * The TextView is updated to reflect this action.
      * The filtered quests list is populated with only trash quests.
      * The QuestsListAdapter is instantiated using 'this' context, the quest_list_item layout,
@@ -201,6 +234,8 @@ public class QuestsActivity extends AppCompatActivity {
      */
     public void trashQuests(View v)
     {
+        subtleBounceAnimation = AnimationUtils.loadAnimation(this, R.anim.subtle_bounce_anim);
+        trashQuestsButton.startAnimation(subtleBounceAnimation);
         mListedQuestsTextView.setText(R.string.all_trash_quests);
         mFilteredQuestsList = filterTrashQuests();
         mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);
@@ -222,6 +257,7 @@ public class QuestsActivity extends AppCompatActivity {
 
     /**
      * recycleQuests is called when the user taps the bottom right recycle button.
+     * The bounce animation is loaded and started on the button.
      * The TextView is updated to reflect this action.
      * The filtered quests list is populated with only recycle quests.
      * The QuestsListAdapter is instantiated using 'this' context, the quest_list_item layout,
@@ -231,6 +267,8 @@ public class QuestsActivity extends AppCompatActivity {
      */
     public void recycleQuests(View v)
     {
+        subtleBounceAnimation = AnimationUtils.loadAnimation(this, R.anim.subtle_bounce_anim);
+        recycleQuestsButton.startAnimation(subtleBounceAnimation);
         mListedQuestsTextView.setText(R.string.all_recycling_quests);
         mFilteredQuestsList = filterRecycleQuests();
         mQuestsListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mFilteredQuestsList);

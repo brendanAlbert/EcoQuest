@@ -17,6 +17,7 @@
         style="@style/LinearLayoutHeight" >
 
         <Button
+            android:id="@+id/mapButton"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_margin="10dp"
@@ -26,6 +27,7 @@
             android:layout_height="match_parent"/>
 
         <Button
+            android:id="@+id/profileButton"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_margin="10dp"
@@ -43,6 +45,7 @@
         style="@style/LinearLayoutHeight" >
 
         <Button
+            android:id="@+id/badgesButton"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_margin="10dp"
@@ -52,6 +55,7 @@
             android:layout_height="match_parent"/>
 
         <Button
+            android:id="@+id/boardsButton"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:text="@string/boards"
@@ -68,7 +72,6 @@
         android:id="@+id/thirdRowLinearLayout"
         android:layout_width="match_parent"
         android:layout_margin="20dp"
-        android:background="@color/cardview_light_background"
         style="@style/LinearLayoutHeight" >
 
         <Button
@@ -92,7 +95,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@color/cardview_light_background"
         style="@style/LinearLayoutHeight" >
 
         <Button
