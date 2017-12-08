@@ -10,6 +10,15 @@ import android.widget.ListView;
 
 import java.util.List;
 
+/**
+ * BadgeListActivity populates a list of badges to display in a list view.
+ *
+ * Currently this page is only able to populate a list and access the badge details page.
+ * In the future this page might have other functions once Titles and other mechanics of the game
+ * have been implemented.
+ *
+ * (Casey)
+ */
 public class BadgesListActivity extends AppCompatActivity {
 
     private DBHelper db;
@@ -17,6 +26,12 @@ public class BadgesListActivity extends AppCompatActivity {
     private BadgeListAdapter badgeListAdapter;
     private ListView badgeListView;
 
+    /**
+     * onCreate populates the badgeListView to dispay all the the possible badges a user can earn
+     * and the progress needed in order to complete each.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +47,12 @@ public class BadgesListActivity extends AppCompatActivity {
         badgeListView.setAdapter(badgeListAdapter);
     }
 
+    /**
+     * viewBadgeDetails method fires intent to view the details of each badge once clicked
+     * from the list view.
+     *
+     * @param view
+     */
     public void viewBadgeDetails(View view)
     {
         if (view instanceof LinearLayout)

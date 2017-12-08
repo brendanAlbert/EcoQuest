@@ -112,6 +112,11 @@ public class DBHelper extends SQLiteOpenHelper {
         mContext = context;
     }
 
+    /**
+     * (Casey)
+     * onCreate method creates data tables for badges, users, quests and quest locations.
+     * @param database
+     */
     @Override
     public void onCreate(SQLiteDatabase database) {
 
@@ -168,6 +173,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * (Casey)
+     * onUpgrade drops the table if the current data table exists.
+     *
+     * @param database
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase database,
                           int oldVersion,
@@ -179,7 +192,11 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /* START OF BADGE RELATED CODE */
-
+    /**
+     * (Casey)
+     * addBadge method add a new badge into the SQLite database
+     * @param badge  is an object we are adding into the database
+     */
     public void addBadge(Badge badge) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -195,6 +212,12 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * (Casey)
+     * getBadge method accepts an id as an argument.
+     * @param id The id is a long to find the object in the database.
+     * @return Method returns a Badge object.
+     */
     public Badge getBadge(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(
@@ -225,6 +248,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return badge;
     }
 
+    /**
+     * (Casey)
+     * getAllBadges method gets a readable database to loop through table and
+     * add badge objects into a list
+     * @return a list of Badge objects.
+     */
     public List<Badge> getAllBadges()
     {
         List<Badge> badgeList = new ArrayList<>();
@@ -268,7 +297,8 @@ public class DBHelper extends SQLiteOpenHelper {
     /* START OF QUEST CODE */
 
     /**
-     * This method add a new quest into the SQLite database
+     * (Casey)
+     * addQuest method add a new quest into the SQLite database
      * @param quest Quest is an object we are adding into the database
      */
     public void addQuest(Quest quest)
@@ -289,8 +319,12 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
-
+    /**
+     * (Casey)
+     * getQuest method accepts an id argument.
+     * @param id unique id associated with a Quest object.
+     * @return Returns a Quest object.
+     */
     public Quest getQuest(long id)
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -324,7 +358,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return quest;
     }
 
-
+    /**
+     * (Casey)
+     * getAllQuest method gets a readable database to loop through table and
+     * add Quest objects into a list
+     * @return a list of Quest objects.
+     */
     public List<Quest> getAllQuests()
     {
         List<Quest> questList = new ArrayList<>();
@@ -365,7 +404,9 @@ public class DBHelper extends SQLiteOpenHelper {
     /* END OF QUEST CODE */
 
 
-    /* START TITLE CODE */
+    /* START TITLE CODE
+
+    Title data table not yet implemented.
 
     public Title getTitle(long id)
     {
@@ -390,7 +431,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    /* END OF TITLE CODE */
+    END OF TITLE CODE */
 
 
     /* START OF USER-RELATED METHODS */
@@ -466,6 +507,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /*  START OF LOCATION METHODS  */
 
+    /**
+     * (Casey)
+     * This method add a new questLocation into the SQLite database
+     * @param questLocations questLocation is an object we are adding into the database
+     */
     public void addLocation(QuestLocations questLocations) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -483,7 +529,12 @@ public class DBHelper extends SQLiteOpenHelper {
         // CLOSE THE DATABASE CONNECTION
         db.close();
     }
-
+    /**
+     * (Casey)
+     * getAllQuestLocation method gets a readable database to loop through table and
+     * add Quest objects into a list
+     * @return a list of Quest objects.
+     */
     public List<QuestLocations> getAllQuestLocations() {
         ArrayList<QuestLocations> locationsList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -634,6 +685,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     // Import Badges from csv file
+
+    /**
+     * importBadgesFromCSV method reads a csv file with set number of separated values to
+     * be populated into a database.
+     *
+     * This method imports values into the Badges Database Table
+     *
+     * @param csvFileName
+     * @return Returns boolean value.
+     */
     boolean importBadgesFromCSV(String csvFileName)
     {
         AssetManager assetManager = mContext.getAssets();
@@ -675,6 +736,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // Import Locations from csv file
 
+    /**
+     * importLocationsFromCSV method reads a csv file with set number of separated values to
+     * be populated into a database.
+     *
+     * This method imports values into the Locations database table.
+     *
+     * @param csvFileName
+     * @return Returns boolean value.
+     */
     public boolean importLocationsFromCSV(String csvFileName) {
         AssetManager manager = mContext.getAssets();
         InputStream inStream;

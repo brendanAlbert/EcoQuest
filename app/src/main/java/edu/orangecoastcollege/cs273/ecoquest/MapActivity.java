@@ -33,6 +33,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
+/**
+ * MapActivity is the Controller for the activity where users can look up locations
+ * where quests can be completed.
+ *
+ */
 public class MapActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -55,6 +60,11 @@ public class MapActivity extends AppCompatActivity
     private LocationRequest mLocationRequest;
 
 
+    /**
+     * onCreate method links all the views including map fragment and questListview.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +108,9 @@ public class MapActivity extends AppCompatActivity
 
     }
 
+    /**
+     * onStart connects the google api client
+     */
     @Override
     protected void onStart()
     {
@@ -105,6 +118,9 @@ public class MapActivity extends AppCompatActivity
         mGoogleApiClient.connect();
     }
 
+    /**
+     * onStop connects the google api client
+     */
     @Override
     protected void onStop()
     {
@@ -112,12 +128,23 @@ public class MapActivity extends AppCompatActivity
         mGoogleApiClient.connect();
     }
 
+    /**
+     * onMapReady sets member variable to googleMap.
+     * @param googleMap
+     */
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
         mMap = googleMap;
     }
 
+    /**
+     * handleNewLocation method adds markers on the map from coordinates in QuestLocation class.
+     *
+     * Camera position is set to zoom a certain distance set at the users location.
+     *
+     * @param newLocation when the location has been changed
+     */
     private void handleNewLocation(Location newLocation)
     {
         mLastLocation = newLocation;
@@ -148,6 +175,10 @@ public class MapActivity extends AppCompatActivity
 
     }
 
+    /**
+     * onLocationChanged method calls handleNewLocation passing param as argument.
+     * @param location
+     */
     @Override
     public void onLocationChanged(Location location) {
         handleNewLocation(location);
@@ -170,6 +201,12 @@ public class MapActivity extends AppCompatActivity
 
     } */
 
+    /**
+     * onConnected method gets the last location from google services then calls
+     * the handleNewLocation method passing last location as the argument.
+     *
+     * @param bundle
+     */
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
@@ -193,11 +230,26 @@ public class MapActivity extends AppCompatActivity
 
     }
 
+    /**
+     * onConnection failed logs an error messages.
+     * @param connectionResult
+     */
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.e("ecoQuest", "Connection to Location services failed: " + connectionResult.getErrorMessage());
     }
 
+    /**
+     * onRequestPermissionResult checks if the app has permission for locations.
+     *
+     * If there is permission last location is updated and handleNewLocation method is called.
+     *
+     * If there is no permission latitude set to 0 and longitude set to 0.
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -216,6 +268,10 @@ public class MapActivity extends AppCompatActivity
         handleNewLocation(mLastLocation);
     }
 
+    /**
+     * viewQuestDetails loads the details intent for quest detail.
+     * @param view
+     */
     public void viewQuestDetails(View view)
     {
         if (view instanceof RelativeLayout)
