@@ -103,6 +103,10 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String FIELD_LONGITUDE = "longitude";
 
 
+    /**
+     * DBHelper
+     * @param context
+     */
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         mContext = context;
@@ -391,6 +395,18 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /* START OF USER-RELATED METHODS */
 
+    /**
+     * (Brendan)
+     * addUser is called many times from the importUsersFromCSV method.
+     * Each row of the csv file means a new User to add to the database.
+     *
+     * A writable database reference is gotten,
+     * a ContentValues object is instantiated,
+     * all of the attributes of the User argument are put into the ContentValues object,
+     * the values object is then inserted into the database and an id is returned and stored.
+     * This id is then set on the User before the database connection is closed.
+     * @param user
+     */
     public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -408,6 +424,21 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    /**
+     * (Brendan)
+     * getUserList creates a readable reference to the SQLite database.
+     * A Cursor object is created using a query to retrieve data from all of the fields of
+     * the User table.
+     *
+     * A List of Users is populated using a while loop to loop through
+     * all of the Users obtained from the Cursor.
+     *
+     * Once all the Users have been found and added to the List, the cursor and database
+     * are closed.
+     *
+     * The List of Users is returned.
+     * @return
+     */
     public List<User> getUserList() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(
@@ -487,6 +518,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /* START OF IMPORTING FROM CSV METHODS */
 
+    /**
+     * (Brendan)
+     * The importUsersFromCSV method is used to read the "users.csv" comma-separated value file
+     * in the assets directory. The database is populated with new Users using the data in each
+     * row of the users.csv file.
+     *
+     * In the future this method will likely be deprecated in favor of a JSON implementation.
+     * @param csvFileName
+     * @return
+     */
     boolean importUsersFromCSV(String csvFileName) {
         AssetManager assetManager = mContext.getAssets();
         InputStream inputStream = null;
@@ -520,6 +561,19 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     * (Brendan)
+     * The importQuestsFromCSV method is used to read the "quests.csv" comma-separated value
+     * file in the assets directory.  The database is populated by creating a new Quest
+     * using the data in each row of the file.
+     *
+     * The convertStringToList helper method allows us to store data in the csv as space separated
+     * values and turns that into a List of Integers.  This was helpful for converting the
+     * QuestTypes.  In the future this will probably be converted to a JSON file format reader,
+     * to prevent awkward conversions between the datafile and how it is stored in the SQLite db.
+     * @param csvFileName
+     * @return
+     */
     boolean importQuestsFromCSV(String csvFileName) {
         AssetManager assetManager = mContext.getAssets();
         InputStream inputStream = null;
