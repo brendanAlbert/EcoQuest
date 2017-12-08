@@ -94,6 +94,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + BADGES_FIELD_MAX_PROGRESS + " INTEGER " +  ")";
         database.execSQL(createQuery);
 
+        // Creating User Data Table
         createQuery = "CREATE TABLE " + USERS_TABLE + "("
                 + USERS_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + USERS_FIELD_USERNAME + " TEXT, "
@@ -114,10 +115,26 @@ public class DBHelper extends SQLiteOpenHelper {
                 + QUEST_FIELD_QUEST_TYPES + " TEXT " + ")";
         database.execSQL(createQuery);
 
-        // Creating Title Data Table
+       /* // Creating Title Data Table
         createQuery = "CREATE TABLE "+ TITLE_TABLE + "("
                 + TITLE_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
-                + TITLE_FIELD_NAME + "TEXT" + ")";
+                + TITLE_FIELD_NAME + "TEXT" + ")"; */
+
+
+       // Creating Locations Data Table
+        createQuery = "CREATE TABLE " + LOCATIONS_TABLE + "("
+                + LOCATIONS_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
+                + FIELD_NAME + " TEXT, "
+                + FIELD_ADDRESS + " TEXT, "
+                + FIELD_CITY + " TEXT,"
+                + FIELD_STATE + " TEXT,"
+                + FIELD_ZIP_CODE + " TEXT,"
+                + FIELD_PHONE + " TEXT,"
+                + FIELD_LATITUDE + " REAL,"
+                + FIELD_LONGITUDE + " REAL"
+                + ")";
+        database.execSQL(createQuery);
+
     }
 
     @Override
@@ -389,6 +406,58 @@ public class DBHelper extends SQLiteOpenHelper {
 
     /* END OF USER-RELATED METHODS */
 
+    /*  START OF LOCATION METHODS  */
+
+    public void addLocation(QuestLocations questLocations) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(FIELD_NAME, questLocations.getName());
+        values.put(FIELD_ADDRESS, questLocations.getAddress());
+        values.put(FIELD_CITY, questLocations.getCity());
+        values.put(FIELD_STATE, questLocations.getState());
+        values.put(FIELD_ZIP_CODE, questLocations.getZipCode());
+        values.put(FIELD_LATITUDE, questLocations.getLatitude());
+        values.put(FIELD_LONGITUDE, questLocations.getLongitude());
+
+        long id = db.insert(LOCATIONS_TABLE, null, values);
+        questLocations.setId(id);
+        // CLOSE THE DATABASE CONNECTION
+        db.close();
+    }
+
+    public List<QuestLocations> getAllQuestLocations() {
+        ArrayList<QuestLocations> locationsList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(
+                LOCATIONS_TABLE,
+                new String[]{LOCATIONS_KEY_FIELD_ID, FIELD_NAME, FIELD_ADDRESS, FIELD_CITY, FIELD_STATE, FIELD_ZIP_CODE, FIELD_LATITUDE, FIELD_LONGITUDE},
+                null,
+                null,
+                null, null, null, null);
+
+        //COLLECT EACH ROW IN THE TABLE
+        if (cursor.moveToFirst()) {
+            do {
+                QuestLocations questLocations =
+                        new QuestLocations(cursor.getLong(0),
+                                cursor.getString(1),
+                                cursor.getString(2),
+                                cursor.getString(3),
+                                cursor.getString(4),
+                                cursor.getString(5),
+                                cursor.getDouble(6),
+                                cursor.getDouble(7));
+                locationsList.add(questLocations);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return locationsList;
+    }
+    /*  END OF LOCATION METHODS  */
+
+
     /* START OF IMPORTING FROM CSV METHODS */
 
     boolean importUsersFromCSV(String csvFileName) {
@@ -514,6 +583,45 @@ public class DBHelper extends SQLiteOpenHelper {
                     Badge badge = new Badge(badgeName, badgeDesc, badgeIcon, maxProgress);
                     addBadge(badge);
                 }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+
+    // Import Locations from csv file
+
+    public boolean importLocationsFromCSV(String csvFileName) {
+        AssetManager manager = mContext.getAssets();
+        InputStream inStream;
+        try {
+            inStream = manager.open(csvFileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(inStream));
+        String line;
+        try {
+            while ((line = buffer.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length != 8) {
+                    Log.d("Quest Locations", "Skipping Bad CSV Row: " + Arrays.toString(fields));
+                    continue;
+                }
+                long id = Long.parseLong(fields[0].trim());
+                String name = fields[1].trim();
+                String address = fields[2].trim();
+                String city = fields[3].trim();
+                String state = fields[4].trim();
+                String zipCode = fields[5].trim();
+                double latitude = Double.parseDouble(fields[6].trim());
+                double longitude = Double.parseDouble(fields[7].trim());
+                addLocation(new QuestLocations(id, name, address, city, state, zipCode, latitude, longitude));
             }
         } catch (IOException e) {
             e.printStackTrace();

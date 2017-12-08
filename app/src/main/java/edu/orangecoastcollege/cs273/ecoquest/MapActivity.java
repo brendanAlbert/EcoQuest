@@ -25,6 +25,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -45,6 +46,9 @@ public class MapActivity extends AppCompatActivity
     private ListView mAllQuestListView;
     private QuestsListAdapter mQuestListAdapter;
     private GoogleMap mMap;
+    private DBHelper locationDataBase;
+
+    private List<QuestLocations> mAllLocations;
 
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
@@ -64,6 +68,11 @@ public class MapActivity extends AppCompatActivity
         mAllQuestListView = (ListView) findViewById(R.id.mapQuestListView);
         mQuestListAdapter = new QuestsListAdapter(this, R.layout.quest_list_item, mAllQuestList);
         mAllQuestListView.setAdapter(mQuestListAdapter);
+
+        locationDataBase = new DBHelper(this);
+        locationDataBase.importLocationsFromCSV("quest_locations.csv");
+        mAllLocations = locationDataBase.getAllQuestLocations();
+
 
         if (mGoogleApiClient == null)
         {
@@ -118,15 +127,24 @@ public class MapActivity extends AppCompatActivity
         LatLng myCoordinate = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
         mMap.addMarker(new MarkerOptions()
                 .position(myCoordinate)
-                .title("Current Location"));
-               // .icon(BitmapDescriptorFactory.fromResource(R.drawable.turtle)));    // Add a custom marker in drawable file
+                .title("Current Location")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.current_location)));    // Add a custom marker in drawable file
 
         CameraPosition cameraPosition = new CameraPosition.Builder().target(myCoordinate).zoom(15.0f).build();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
         mMap.moveCamera(cameraUpdate);
 
         // Add standard markers for all locations Create list of locations to loop through
+        for (QuestLocations questLocations : mAllLocations)
+        {
+            LatLng coordinate = new LatLng(questLocations.getLatitude(), questLocations.getLongitude());
+            mMap.addMarker((new MarkerOptions()
+                    .position(coordinate)
+                    .title(questLocations.getName()))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_quest_icon)));
 
+            //Log.i("For each Loop", "Looping through");
+        }
 
     }
 
