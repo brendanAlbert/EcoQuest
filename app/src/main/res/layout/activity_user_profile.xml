@@ -84,4 +84,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"/>
 
+    <ImageView
+        android:id="@+id/captainImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/captain_planet"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

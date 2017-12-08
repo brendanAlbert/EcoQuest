@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,6 +17,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -48,6 +52,14 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView mUsernameTextView;
     private TextView mUserBadgesEarnedTextView;
     private TextView mUserPointsEarnedTextView;
+
+    // Sensors:
+    private SensorManager mSensorManager;
+    private Sensor accelerometer;
+    private ShakeDetector mShakeDetector;
+
+    private ImageView mCaptainImage;
+    private Animation captainAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +103,41 @@ public class UserProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        // Sensor Shake:
+        // TASK 3: REGISTER THE SENSOR MANAGER AND SETUP THE SHAKE DETECTION
+        mCaptainImage = (ImageView) findViewById(R.id.captainImageView);
+
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        mShakeDetector = new ShakeDetector(new ShakeDetector.OnShakeListener() {
+            @Override
+            public void onShake() {
+                Log.i("onShake called", "OnShake was called");
+                captainAnimation = AnimationUtils.loadAnimation(UserProfileActivity.this, R.anim.captain_pop_up);
+                mCaptainImage.startAnimation(captainAnimation);
+
+            }
+        });
+
     }
+
+    /* Shake methods */
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        mSensorManager.registerListener(mShakeDetector, accelerometer, SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        mSensorManager.unregisterListener(mShakeDetector, accelerometer);
+    }
+
+    /* Shake methods End */
 
     public void viewBadgeDetails(View view)
     {
@@ -176,6 +222,8 @@ public class UserProfileActivity extends AppCompatActivity {
         }
 
     }
+
+
 
 
 }
