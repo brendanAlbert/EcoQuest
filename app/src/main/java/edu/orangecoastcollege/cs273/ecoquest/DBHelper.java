@@ -576,6 +576,8 @@ public class DBHelper extends SQLiteOpenHelper {
      * row of the users.csv file.
      *
      * In the future this method will likely be deprecated in favor of a JSON implementation.
+     *
+     *  =) smiley for GitHub push
      * @param csvFileName
      * @return
      */
