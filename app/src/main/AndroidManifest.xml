@@ -62,14 +62,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key"/>
 
-        <activity android:name=".MapActivity">
+        <activity
+            android:name=".MapActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".QuestDetailsActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TurnInQuestActivity">
+        <activity
+            android:name=".TurnInQuestActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

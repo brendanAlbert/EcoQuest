@@ -13,5 +13,15 @@
     <string name="user_badges_earned_text_view">%1$s / %2$s Badges</string>
     <string name="user_points_earned_text_view">%1$s Points</string>
     <string name="complete_a_quest">Turn in Quest</string>
+    <string name="beach_quests">All beach-related quests.</string>
+    <string name="all_park_quests">All park quests.</string>
+    <string name="all_city_quests">All city-related quests.</string>
+    <string name="all_school_quests">All quests that take place on school campuses.</string>
+    <string name="all_trash_quests">All quests that involve tossing trash.</string>
+    <string name="all_recycling_quests">All quests that involve recycling.</string>
+    <string name="ranks_users_by_category">See where all ecoQuest users rank by category</string>
+    <string name="rank_by_points">Users ranked by points earned</string>
+    <string name="users_ranked_by_level">Users ranked by level reached</string>
+    <string name="users_ranked_by_badges_earned">Users ranked by badges earned</string>
 
 </resources>

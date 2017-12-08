@@ -7,6 +7,16 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+/**
+ * TurnInQuestActivity is the controller for the Activity where users can add
+ * various trash or recycle items.
+ *
+ * The member variables are three types of Animations:
+ *  a shrinkGrow animation which makes it look like the buttons are pressed,
+ *  a spinAnimation for the dog poo button, simply for variety,
+ *  and finally the plusOne animation which provides a neat visual alert
+ *  to the user that they incremented that particular trash or recycle item.
+ */
 public class TurnInQuestActivity extends AppCompatActivity {
 
     private Animation shrinkGrowAnimation;
@@ -37,6 +47,11 @@ public class TurnInQuestActivity extends AppCompatActivity {
     private ImageView miscAddButton;
     private ImageView miscPlusOneIcon;
 
+    /**
+     * onCreate()'s only task in this Activity is setting the content view
+     * and wiring up all the ImageViews.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +83,19 @@ public class TurnInQuestActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * spinAnimation is called when the user taps the poo plus button.
+     *
+     * the animations must be individually loaded in each method because we are using
+     * 'this' context.  I tested extracting the load animations into onCreate but
+     * then the plus one animation fires on any other buttons that were recently
+     * pressed.  This was definitely not the desired effect.
+     *
+     * the spin and plus one animations are loaded from their respective xml files.
+     * the spin animation is started on the plus button,
+     * and nearly simultaneously, the plus one icon animation starts on the +1 icon.
+     * @param view
+     */
     public void spinAnimation(View view)
     {
         spinAnimation = AnimationUtils.loadAnimation(this, R.anim.spin_anim);
@@ -76,6 +104,14 @@ public class TurnInQuestActivity extends AppCompatActivity {
         pooPlusOneIcon.startAnimation(plusOneAnimation);
     }
 
+    /**
+     * shrinkGrowAnimation is called when the user taps the cigarette butt plus button
+     *
+     * the shrinkGrow and plus one animations are loaded from their respective xml files.
+     * the shrinkGrow animation is started on the plus button,
+     * and nearly simultaneously, the plus one icon animation starts on the +1 icon.
+     * @param view
+     */
     public void shrinkGrowAnimation(View view)
     {
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);
@@ -84,6 +120,14 @@ public class TurnInQuestActivity extends AppCompatActivity {
         cigPlusOneIcon.startAnimation(plusOneAnimation);
     }
 
+    /**
+     * coffeeCupPlusOneAnimation is called when the user taps the coffee cup plus button
+     *
+     * the shrinkGrow and plus one animations are loaded from their respective xml files.
+     * the shrinkGrow animation is started on the plus button,
+     * and nearly simultaneously, the plus one icon animation starts on the +1 icon.
+     * @param view
+     */
     public void coffeeCupPlusOneAnimation(View view)
     {
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);
@@ -92,6 +136,14 @@ public class TurnInQuestActivity extends AppCompatActivity {
         coffeeCupPlusOneIcon.startAnimation(plusOneAnimation);
     }
 
+    /**
+     * plasticBottlePlusOneAnimation is called when the user taps the plastic bottle plus button
+     *
+     * * the shrinkGrow and plus one animations are loaded from their respective xml files.
+     * the shrinkGrow animation is started on the plus button,
+     * and nearly simultaneously, the plus one icon animation starts on the +1 icon.
+     * @param view
+     */
     public void plasticBottlePlusOneAnimation(View view)
     {
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);
@@ -100,6 +152,14 @@ public class TurnInQuestActivity extends AppCompatActivity {
         plasticBottlePlusOneIcon.startAnimation(plusOneAnimation);
     }
 
+    /**
+     * aluminumCanPlusOneAnimation is called when the user taps the aluminum can plus button
+     *
+     * the shrinkGrow and plus one animations are loaded from their respective xml files.
+     * the shrinkGrow animation is started on the plus button,
+     * and nearly simultaneously, the plus one icon animation starts on the +1 icon.
+     * @param view
+     */
     public void aluminumCanPlusOneAnimation(View view)
     {
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);
@@ -108,6 +168,14 @@ public class TurnInQuestActivity extends AppCompatActivity {
         aluminumCanPlusOneIcon.startAnimation(plusOneAnimation);
     }
 
+    /**
+     * drinkCupPlusOneAnimation is called when the user taps the drink cup plus button
+     *
+     * the shrinkGrow and plus one animations are loaded from their respective xml files.
+     * the shrinkGrow animation is started on the plus button,
+     * and nearly simultaneously, the plus one icon animation starts on the +1 icon.
+     * @param view
+     */
     public void drinkCupPlusOneAnimation(View view)
     {
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);
@@ -116,6 +184,14 @@ public class TurnInQuestActivity extends AppCompatActivity {
         drinkCupPlusOneIcon.startAnimation(plusOneAnimation);
     }
 
+    /**
+     * scrapeGumPlusOneAnimation is called when the user taps the scrape gum plus button
+     *
+     * the shrinkGrow and plus one animations are loaded from their respective xml files.
+     * the shrinkGrow animation is started on the plus button,
+     * and nearly simultaneously, the plus one icon animation starts on the +1 icon.
+     * @param view
+     */
     public void scrapeGumPlusOneAnimation(View view)
     {
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);
@@ -124,6 +200,14 @@ public class TurnInQuestActivity extends AppCompatActivity {
         scrapGumPlusOneIcon.startAnimation(plusOneAnimation);
     }
 
+    /**
+     * miscPlusOneAnimation is called when the user taps the miscellaneous plus button
+     *
+     * the shrinkGrow and plus one animations are loaded from their respective xml files.
+     * the shrinkGrow animation is started on the plus button,
+     * and nearly simultaneously, the plus one icon animation starts on the +1 icon.
+     * @param view
+     */
     public void miscPlusOneAnimation(View view)
     {
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);

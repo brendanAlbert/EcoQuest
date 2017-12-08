@@ -18,6 +18,33 @@ import java.util.List;
 
 /**
  * Created by Brendan and Casey
+ *
+ * The DBHelper class extends, and therefore "is an", SQLiteOpenHelper.
+ *
+ * This veritable monolith of a Model class contains all the member variables and methods responsible
+ * for persisting and retrieving data in and from the SQLite database.
+ *
+ * The tables in the ecoQuest database are:
+ *  - badges (Brendan & Casey)
+ *  - users (Brendan & Casey)
+ *  - quests (Brendan & Casey)
+ *  - titles (Casey)
+ *  - Locations (Casey)
+ *
+ *  Each table has many private static final variables corresponding to the fields of that table.
+ *
+ *  The methods in DBHelper include:
+ *   - constructor
+ *   - onCreate  (must be implemented when extending SQLiteOpenHelper)
+ *   - onUpgrade (must be implemented when extending SQLiteOpenHelper)
+ *   - addBadge, getBadge, getAllBadges
+ *   - addQuest, getQuest, getAllQuests
+ *   - getTitle
+ *   - addUser, getUserList
+ *   - addLocation, getAllQuestLocations
+ *   - importUsersFromCSV, importQuestsFromCSV, importBadgesFromCSV, and importLocationsFromCSV
+ *   - helper methods, convertStringToList, convertListToString
+ *
  */
 
 public class DBHelper extends SQLiteOpenHelper {

@@ -4,7 +4,6 @@ import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -12,6 +11,17 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * QuestDetailsActivity is the Activity/Controller that handles when a user tapped
+ * on a Quest in a ListView and they are brought to this Activity.
+ *
+ * There are member variables for the ImageViews, TextViews, ProgressBar, and the Quest.
+ *
+ * The only method is onCreate.
+ * onCreate sets the content view,
+ * wires up all the Views,
+ * instantiates the Quest by getting a parceled Quest sent via an Intent.
+ */
 public class QuestDetailsActivity extends AppCompatActivity {
 
 
@@ -24,6 +34,17 @@ public class QuestDetailsActivity extends AppCompatActivity {
 
     private Quest mQuest;
 
+    /**
+     * onCreate wires up all the Views and Progress Bar, and
+     * gets the Quest sent via an Intent.  The Intent has a parceled Quest.
+     *
+     * All of the Views are populated with the data provided by the parceled Quest.
+     *
+     * The Progress Bar and quest completion status are hardcoded at the moment
+     * for demonstration purposes.  But when the app is made available to users,
+     * these values would reflect the accomplishments of the User.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +59,13 @@ public class QuestDetailsActivity extends AppCompatActivity {
 
 
         mQuest = getIntent().getExtras().getParcelable("quest");
-        Log.i("deets", mQuest.toString());
-        Log.i("deets", String.valueOf(R.id.questNameTextView));
 
         mQuestNameTextView.setText(mQuest.getName());
 
 
         mQuestDescriptionTextView.setText(mQuest.getDescription());
         mProgressBar.setMax(mQuest.getMaxProgress());
+        // for demonstration purposes we have just hard coded a progress of 1
         //mProgressBar.setProgress(mQuest.getCurrentProgress());
         mProgressBar.setProgress(1);
 

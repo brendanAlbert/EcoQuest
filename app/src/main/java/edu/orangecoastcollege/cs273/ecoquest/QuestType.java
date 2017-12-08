@@ -2,8 +2,11 @@ package edu.orangecoastcollege.cs273.ecoquest;
 
 /**
  * Created by brendantyleralbert on 11/30/17.
+ *
+ * QuestType is a very simple class which uses static final constants to assign
+ * human-readable representations to ints.  These ints are used to represent
+ * the various types of Quests in ecoQuest.
  */
-
 public class QuestType {
     final static int PARK    = 0;
     final static int BEACH   = 1;

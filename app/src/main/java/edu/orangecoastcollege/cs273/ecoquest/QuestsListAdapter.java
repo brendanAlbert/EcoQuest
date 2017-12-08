@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +22,31 @@ import java.util.Random;
 
 /**
  * Created by brendantyleralbert on 11/29/17.
+ *
+ * QuestsListAdapter "is an" ArrayAdapter of Quests.
+ *
+ * This class is used to inflate views in a ListView via the getView method.
+ *
+ * Views are wired up, the respective Quest is gotten from the List of Quests passed into
+ * the constructor, the various TextViews and ImageViews are set using the data stored in
+ * the Quest object.
+ *
+ * In the massive try catch block where we load the image asset, we are randomly assigning
+ * a quest complete or incomplete image.  This is simply to make demonstrating the app
+ * more interesting.  This would behave as expected as if a User was using the app.
+ * It would use the appropriate image for their quest completion status.
  */
-
 public class QuestsListAdapter extends ArrayAdapter<Quest> {
     private Context mContext;
     private int mResource;
     private List<Quest> mQuestsList;
 
+    /**
+     * QuestsListAdapter is a parameterized constructor that accepts 3 arguments
+     * @param context the context where this adapter is being used.
+     * @param resource the id of the resource to populate
+     * @param questsList the List of Quests to populate the ListView with
+     */
     public QuestsListAdapter(@NonNull Context context,
                              @LayoutRes int resource,
                              @NonNull List<Quest> questsList) {
@@ -39,6 +56,20 @@ public class QuestsListAdapter extends ArrayAdapter<Quest> {
         mQuestsList = questsList;
     }
 
+    /**
+     * In getView, Views are wired up, the respective Quest is gotten from the List of Quests passed into
+     * the constructor, the various TextViews and ImageViews are set using the data stored in
+     * the Quest object.
+     *
+     * In the massive try catch block where we load the image asset, we are randomly assigning
+     * a quest complete or incomplete image.  This is simply to make demonstrating the app
+     * more interesting.  This would behave as expected as if a User was using the app.
+     * It would use the appropriate image for their quest completion status.
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -52,7 +83,6 @@ public class QuestsListAdapter extends ArrayAdapter<Quest> {
         ImageView questCompleteStatusImageView = questListItemView.findViewById(R.id.questCompleteStatusImageView);
 
         Quest quest = mQuestsList.get(position);
-        Log.i("quest adapter", quest.toString());
 
         questNameTextView.setText(quest.getName());
         questDescriptionTextView.setText(quest.getDescription());
