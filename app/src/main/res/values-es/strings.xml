@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EcoQuest</string>
+    <string name="all_city_quests">Todas las misiones relacionadas con la ciudad.</string>
+    <string name="all_park_quests">Todas las misiones del parque.</string>
+    <string name="all_recycling_quests">Todas las misiones que involucran el reciclaje.</string>
+    <string name="all_school_quests">Todas las misiones que tienen lugar en los campus de la escuela.</string>
+    <string name="all_trash_quests">Todas las misiones que implican tirar basura.</string>
+    <string name="back_bay_quest_chain">Back Bay Quest Chain</string>
+    <string name="badgeListTitle">Insignias</string>
+    <string name="badges">insignias</string>
+    <string name="beach_quests">Todas las misiones relacionadas con la playa.</string>
+    <string name="boards">tablas</string>
+    <string name="choose_a_title">Elige un título</string>
+    <string name="complete_a_quest">Convertir en una Misión</string>
+    <string name="map">mapa</string>
+    <string name="profile">perfil</string>
+    <string name="quests">Ver Misiones</string>
+    <string name="rank_by_points">Usuarios ordenados por puntos ganados</string>
+    <string name="ranks_users_by_category">Vea dónde clasifican todos los usuarios de ecoQuest por categoría</string>
+    <string name="tap_above_buttons_to_see_quests_available_for_each_area">Toca los botones superiores para ver las misiones disponibles para cada área</string>
+    <string name="user_badges_earned_text_view">%1$s / %2$s Insignias</string>
+    <string name="user_points_earned_text_view">%1$s Puntos</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="users_ranked_by_badges_earned">Usuarios clasificados por insignias obtenidas</string>
+    <string name="users_ranked_by_level">Usuarios clasificados por nivel alcanzado</string>
+</resources>
