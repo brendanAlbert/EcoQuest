@@ -32,7 +32,8 @@ public class TurnInQuestActivity extends AppCompatActivity {
 
     private int poosCollected;
     private int buttsCollected;
-    private int coffeeCupsColleted;
+    private int coffeeCupsCollected;
+    private int plasticBottlesCollected;
 
     // TODO: Add functionality for the demo to demonstrate what earning a badge will look like.
     // TODO: When the user taps a button enough times, trigger the badge earned splash
@@ -227,7 +228,7 @@ public class TurnInQuestActivity extends AppCompatActivity {
                 case 5:
                     stream = am.open("journeyman_buttcollector.png");
                     image = Drawable.createFromStream(stream, "journeyman_buttcollector.png");
-                    badgeNameTextView.setText("journeyman butt collector");
+                    badgeNameTextView.setText("noob butt collector");
                     whichBadgeUserEarnedImageView.setImageDrawable(image);
                     badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
                     badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
@@ -293,10 +294,70 @@ public class TurnInQuestActivity extends AppCompatActivity {
      */
     public void coffeeCupPlusOneAnimation(View view)
     {
+        coffeeCupsCollected++;
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);
         plusOneAnimation = AnimationUtils.loadAnimation(this, R.anim.plus_one_anim);
-        coffeeCupAddButton.startAnimation(shrinkGrowAnimation);
-        coffeeCupPlusOneIcon.startAnimation(plusOneAnimation);
+
+        badgeEarnedAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.badge_earned_anim);
+        textZoomLeftAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.text_zoom_left_anim);
+        badgeFadeInZoomLeftAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.badge_fade_in_zoom_left_anim);
+
+        badgeEarnedImageView.getLayoutParams().width = questTurnInScrollView.getWidth();
+        badgeEarnedImageView.getLayoutParams().height = questTurnInScrollView.getHeight();
+        badgeEarnedImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        AssetManager am = this.getAssets();
+        InputStream stream;
+        Drawable image;
+        try {
+
+            switch (coffeeCupsCollected) {
+                case 1:
+                    stream = am.open("lvl1_cup_collector.png");
+                    image = Drawable.createFromStream(stream, "lvl1_cup_collector.png");
+                    badgeNameTextView.setText("level 1\ncup collector");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 5:
+                    stream = am.open("lvl2_cup_collector.png");
+                    image = Drawable.createFromStream(stream, "lvl2_cup_collector.png");
+                    badgeNameTextView.setText("level 2\ncup collector");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 10:
+                    stream = am.open("lvl3_cup_collector.png");
+                    image = Drawable.createFromStream(stream, "lvl3_cup_collector.png");
+                    badgeNameTextView.setText("level 3\ncup collector");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 20:
+                    stream = am.open("lvl4_cup_collector.png");
+                    image = Drawable.createFromStream(stream, "lvl4_cup_collector.png");
+                    badgeNameTextView.setText("level 4\ncup collector");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                default:
+                    coffeeCupAddButton.startAnimation(shrinkGrowAnimation);
+                    coffeeCupPlusOneIcon.startAnimation(plusOneAnimation);
+                    break;
+            }
+        } catch (IOException e) { e.printStackTrace(); }
     }
 
     /**
@@ -309,10 +370,61 @@ public class TurnInQuestActivity extends AppCompatActivity {
      */
     public void plasticBottlePlusOneAnimation(View view)
     {
+        plasticBottlesCollected++;
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);
         plusOneAnimation = AnimationUtils.loadAnimation(this, R.anim.plus_one_anim);
-        plasticBottleAddButton.startAnimation(shrinkGrowAnimation);
-        plasticBottlePlusOneIcon.startAnimation(plusOneAnimation);
+
+        badgeEarnedAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.badge_earned_anim);
+        textZoomLeftAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.text_zoom_left_anim);
+        badgeFadeInZoomLeftAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.badge_fade_in_zoom_left_anim);
+
+        badgeEarnedImageView.getLayoutParams().width = questTurnInScrollView.getWidth();
+        badgeEarnedImageView.getLayoutParams().height = questTurnInScrollView.getHeight();
+        badgeEarnedImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        AssetManager am = this.getAssets();
+        InputStream stream;
+        Drawable image;
+        try {
+
+            switch (plasticBottlesCollected) {
+                case 5:
+                    stream = am.open("level1_waterbottle_recycler.png");
+                    image = Drawable.createFromStream(stream, "level1_waterbottle_recycler.png");
+                    badgeNameTextView.setText("level 1\nwater bottle recycler");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 15:
+                    stream = am.open("level2_waterbottle_recycler.png");
+                    image = Drawable.createFromStream(stream, "level2_waterbottle_recycler.png");
+                    badgeNameTextView.setText("level 2\nwater bottle recycler");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 30:
+                    stream = am.open("level3_waterbottle_recycler.png");
+                    image = Drawable.createFromStream(stream, "level3_waterbottle_recycler.png");
+                    badgeNameTextView.setText("level 3\nwater bottle recycler");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                default:
+                    plasticBottleAddButton.startAnimation(shrinkGrowAnimation);
+                    plasticBottlePlusOneIcon.startAnimation(plusOneAnimation);
+                    break;
+            }
+        } catch (IOException e) { e.printStackTrace(); }
+
     }
 
     /**
