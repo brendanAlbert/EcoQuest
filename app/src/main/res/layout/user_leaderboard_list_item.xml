@@ -5,6 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="horizontal"
+              android:background="#ccffffff"
               android:onClick="visitUserProfile"
               android:padding="10dp" >
 
@@ -54,6 +55,6 @@
         android:gravity="end"
         android:textSize="24sp"
         android:paddingStart="30dp"
-        android:paddingEnd="39dp"
+        android:paddingEnd="20dp"
         android:text="3,860"/>
 </LinearLayout>

@@ -21,6 +21,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * Created by brendantyleralbert on 11/19/17.
@@ -46,6 +47,26 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
     private int mResource;
     private List<User> mAllUsersList = new ArrayList<>();
     private String mStatToTrack;
+    private String[] mListOfTitles= {
+        "PooPoo Paladin",
+        "Seagull Saver",
+        "Bane of Litterbugs",
+            "Doctor of Debris",
+            "Detritus Destroyer",
+            "Cup Collector",
+            "Collector of Butts",
+            "Trash Blaster",
+            "Trash Trooper",
+            "Rajah of Recycle",
+            "Caliph of Collection",
+            "Plastic Potentate",
+            "Rex of Rubbish",
+            "Regin of Refuse",
+            "Sultan of Scrap",
+            "Barón de Basura",
+            "Warlock of Waste",
+            "Waste Warrior"
+    };
 
     /**
      * LeaderboardListAdapter is a parameterized constructor.
@@ -97,7 +118,7 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
         TextView rankTextView = listItemView.findViewById(R.id.rankTextView);
         ImageView userImageView = listItemView.findViewById(R.id.userImageView);
         TextView userNameTextView = listItemView.findViewById(R.id.usernameTextView);
-        //TextView userTitleTextView = listItemView.findViewById(R.id.userTitleTextView);
+        TextView userTitleTextView = listItemView.findViewById(R.id.userTitleTextView);
         TextView userPointsLevelsBadgesTextView = listItemView.findViewById(R.id.userPointsLevelsBadgesTextView);
 
         User user = mAllUsersList.get(position);
@@ -127,7 +148,11 @@ public class LeaderboardListAdapter extends ArrayAdapter<User> {
         else if (mStatToTrack.equals("badges"))
             userPointsLevelsBadgesTextView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(user.getHowManyBadges())));
 
+        // Since the title functionality did not make it into this version,
+        // we will simply get a random title String for now for purposes of demonstration.
         //userTitleTextView.setText(user.getTitle());
+        Random rand = new Random();
+        userTitleTextView.setText(mListOfTitles[rand.nextInt(mListOfTitles.length)]);
 
         return listItemView;
     }

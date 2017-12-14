@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
+    android:id="@+id/questTurnInScrollView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,288 +10,340 @@
     android:layout_marginTop="20dp"
     tools:context="edu.orangecoastcollege.cs273.ecoquest.TurnInQuestActivity">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/turnInQuestRow0"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                app:srcCompat="@drawable/dog_poo_icon"/>
+            <LinearLayout
+                android:id="@+id/turnInQuestRow0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:srcCompat="@drawable/dog_poo_icon"/>
+                <TextView
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:gravity="left"
+                    android:layout_gravity="center"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="Dog Poo"/>
+                <ImageView
+                    android:id="@+id/dogPooAddButton"
+                    android:layout_gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="spinAnimation"
+                    app:srcCompat="@drawable/add_item_icon"/>
+                <ImageView
+                    android:id="@+id/pooPlus1Icon"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/green_plus1_icon"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/turnInQuestRow1"
+                android:layout_below="@+id/turnInQuestRow0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:srcCompat="@drawable/cigarette_icon"/>
+                <TextView
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:gravity="left"
+                    android:layout_gravity="center"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="Cigarette Butt"/>
+                <ImageView
+                    android:id="@+id/cigButtAddButton"
+                    android:layout_gravity="center"
+                    android:layout_width="60dp"
+                    android:onClick="shrinkGrowAnimation"
+                    android:layout_height="60dp"
+                    app:srcCompat="@drawable/add_item_icon"/>
+                <ImageView
+                    android:id="@+id/cigPlus1Icon"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/green_plus1_icon"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/turnInQuestRow2"
+                android:layout_below="@+id/turnInQuestRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="start"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:srcCompat="@drawable/coffee_cup_icon"/>
+                <TextView
+                    android:paddingLeft="10dp"
+                    android:gravity="left"
+                    android:layout_gravity="center"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="Coffee Cup"/>
+                <ImageView
+                    android:id="@+id/coffeeCupButton"
+                    android:layout_gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="coffeeCupPlusOneAnimation"
+                    app:srcCompat="@drawable/add_item_icon"/>
+                <ImageView
+                    android:id="@+id/coffeeCupPlus1Icon"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/green_plus1_icon"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/turnInQuestRow3"
+                android:layout_below="@+id/turnInQuestRow2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="start"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:srcCompat="@drawable/plastic_bottle_icon"/>
+                <TextView
+                    android:paddingStart="10dp"
+                    android:gravity="start"
+                    android:layout_gravity="center"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="Plastic Bottle"/>
+                <ImageView
+                    android:id="@+id/plasticBottleAddButton"
+                    android:layout_gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="plasticBottlePlusOneAnimation"
+                    app:srcCompat="@drawable/add_item_icon"/>
+                <ImageView
+                    android:id="@+id/plasticBottlePlus1Icon"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/green_plus1_icon"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/turnInQuestRow4"
+                android:layout_below="@+id/turnInQuestRow3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="start"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:srcCompat="@drawable/aluminum_can_icon"/>
+                <TextView
+                    android:paddingStart="10dp"
+                    android:gravity="start"
+                    android:layout_gravity="center"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="Aluminum Can"/>
+                <ImageView
+                    android:id="@+id/aluminumCanAddButton"
+                    android:layout_gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="aluminumCanPlusOneAnimation"
+                    app:srcCompat="@drawable/add_item_icon"/>
+                <ImageView
+                    android:id="@+id/aluminumCanPlus1Icon"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/green_plus1_icon"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/turnInQuestRow5"
+                android:layout_below="@+id/turnInQuestRow4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="start"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:srcCompat="@drawable/fountain_drink_cup_icon"/>
+                <TextView
+                    android:paddingStart="10dp"
+                    android:gravity="start"
+                    android:layout_gravity="center"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="Drink Cup"/>
+                <ImageView
+                    android:id="@+id/drinkCupAddButton"
+                    android:layout_gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="drinkCupPlusOneAnimation"
+                    app:srcCompat="@drawable/add_item_icon"/>
+                <ImageView
+                    android:id="@+id/drinkCupPlus1Icon"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/green_plus1_icon"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/turnInQuestRow6"
+                android:layout_below="@+id/turnInQuestRow5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="start"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:srcCompat="@drawable/gum_wad_icon"/>
+                <TextView
+                    android:paddingStart="10dp"
+                    android:gravity="start"
+                    android:layout_gravity="center"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="Scrape Gum"/>
+                <ImageView
+                    android:id="@+id/scrapeGumAddButton"
+                    android:layout_gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="scrapeGumPlusOneAnimation"
+                    app:srcCompat="@drawable/add_item_icon"/>
+                <ImageView
+                    android:id="@+id/scrapeGumPlus1Icon"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/green_plus1_icon"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/turnInQuestRow7"
+                android:layout_below="@+id/turnInQuestRow6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="start"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:srcCompat="@drawable/miscellaneous_trash_icon"/>
+                <TextView
+                    android:paddingStart="10dp"
+                    android:gravity="start"
+                    android:layout_gravity="center"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="Miscellaneous"/>
+                <ImageView
+                    android:id="@+id/miscAddButton"
+                    android:layout_gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="miscPlusOneAnimation"
+                    app:srcCompat="@drawable/add_item_icon"/>
+                <ImageView
+                    android:id="@+id/miscPlus1Icon"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/green_plus1_icon"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/badgeEarnedImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/badge_earned_reward_splash"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
             <TextView
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:gravity="left"
-                android:layout_gravity="center"
-                android:layout_width="160dp"
+                android:id="@+id/badgeEarnedTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Dog Poo"/>
-            <ImageView
-                android:id="@+id/dogPooAddButton"
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:onClick="spinAnimation"
-                app:srcCompat="@drawable/add_item_icon"/>
-            <ImageView
-                android:id="@+id/pooPlus1Icon"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/green_plus1_icon"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/turnInQuestRow1"
-            android:layout_below="@+id/turnInQuestRow0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                app:srcCompat="@drawable/cigarette_icon"/>
-            <TextView
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:gravity="left"
-                android:layout_gravity="center"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Cigarette Butt"/>
-            <ImageView
-                android:id="@+id/cigButtAddButton"
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:onClick="shrinkGrowAnimation"
-                android:layout_height="60dp"
-                app:srcCompat="@drawable/add_item_icon"/>
-            <ImageView
-                android:id="@+id/cigPlus1Icon"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/green_plus1_icon"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/turnInQuestRow2"
-            android:layout_below="@+id/turnInQuestRow1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_gravity="start"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                app:srcCompat="@drawable/coffee_cup_icon"/>
-            <TextView
-                android:paddingLeft="10dp"
-                android:gravity="left"
-                android:layout_gravity="center"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Coffee Cup"/>
-            <ImageView
-                android:id="@+id/coffeeCupButton"
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:onClick="coffeeCupPlusOneAnimation"
-                app:srcCompat="@drawable/add_item_icon"/>
-            <ImageView
-                android:id="@+id/coffeeCupPlus1Icon"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/green_plus1_icon"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/turnInQuestRow3"
-            android:layout_below="@+id/turnInQuestRow2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_gravity="start"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                app:srcCompat="@drawable/plastic_bottle_icon"/>
-            <TextView
-                android:paddingStart="10dp"
                 android:gravity="start"
+                android:layout_marginLeft="50dp"
                 android:layout_gravity="center"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:textSize="22sp"
-                android:text="Plastic Bottle"/>
-            <ImageView
-                android:id="@+id/plasticBottleAddButton"
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:onClick="plasticBottlePlusOneAnimation"
-                app:srcCompat="@drawable/add_item_icon"/>
-            <ImageView
-                android:id="@+id/plasticBottlePlus1Icon"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:textColor="#fff"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/green_plus1_icon"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/turnInQuestRow4"
-            android:layout_below="@+id/turnInQuestRow3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_gravity="start"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                app:srcCompat="@drawable/aluminum_can_icon"/>
+                android:text="BADGE EARNED !!"/>
             <TextView
-                android:paddingStart="10dp"
-                android:gravity="start"
-                android:layout_gravity="center"
-                android:layout_width="160dp"
+                android:layout_below="@+id/badgeEarnedTextView"
+                android:id="@+id/badgeNameTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Aluminum Can"/>
-            <ImageView
-                android:id="@+id/aluminumCanAddButton"
+                android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:onClick="aluminumCanPlusOneAnimation"
-                app:srcCompat="@drawable/add_item_icon"/>
-            <ImageView
-                android:id="@+id/aluminumCanPlus1Icon"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#fff"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/green_plus1_icon"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/turnInQuestRow5"
-            android:layout_below="@+id/turnInQuestRow4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:text="MEADOW MUFFIN KNIGHT"/>
 
             <ImageView
-                android:layout_gravity="start"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                app:srcCompat="@drawable/fountain_drink_cup_icon"/>
-            <TextView
-                android:paddingStart="10dp"
-                android:gravity="start"
-                android:layout_gravity="center"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Drink Cup"/>
-            <ImageView
-                android:id="@+id/drinkCupAddButton"
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:onClick="drinkCupPlusOneAnimation"
-                app:srcCompat="@drawable/add_item_icon"/>
-            <ImageView
-                android:id="@+id/drinkCupPlus1Icon"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/whichBadgeUserEarnedImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="150dp"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/green_plus1_icon"/>
-        </LinearLayout>
+                app:srcCompat="@drawable/meadow_muffin_knight"/>
 
-        <LinearLayout
-            android:id="@+id/turnInQuestRow6"
-            android:layout_below="@+id/turnInQuestRow5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        </RelativeLayout>
 
-            <ImageView
-                android:layout_gravity="start"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                app:srcCompat="@drawable/gum_wad_icon"/>
-            <TextView
-                android:paddingStart="10dp"
-                android:gravity="start"
-                android:layout_gravity="center"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Scrape Gum"/>
-            <ImageView
-                android:id="@+id/scrapeGumAddButton"
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:onClick="scrapeGumPlusOneAnimation"
-                app:srcCompat="@drawable/add_item_icon"/>
-            <ImageView
-                android:id="@+id/scrapeGumPlus1Icon"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/green_plus1_icon"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/turnInQuestRow7"
-            android:layout_below="@+id/turnInQuestRow6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_gravity="start"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                app:srcCompat="@drawable/miscellaneous_trash_icon"/>
-            <TextView
-                android:paddingStart="10dp"
-                android:gravity="start"
-                android:layout_gravity="center"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Miscellaneous"/>
-            <ImageView
-                android:id="@+id/miscAddButton"
-                android:layout_gravity="center"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:onClick="miscPlusOneAnimation"
-                app:srcCompat="@drawable/add_item_icon"/>
-            <ImageView
-                android:id="@+id/miscPlus1Icon"
-                android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/green_plus1_icon"/>
-        </LinearLayout>
-    </RelativeLayout>
-
-
-
+    </FrameLayout>
 </ScrollView>

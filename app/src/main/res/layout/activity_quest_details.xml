@@ -12,12 +12,12 @@
         android:id="@+id/detailsQuestImageView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="5"
         app:srcCompat="@drawable/beach_quests_button_icon"/>
 
     <LinearLayout
         android:padding="10dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
@@ -36,6 +36,7 @@
             <TextView
                 android:id="@+id/detailsQuestDescriptionTextView"
                 android:layout_below="@id/detailsQuestNameTextView"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:layout_height="wrap_content"
@@ -51,8 +52,9 @@
         android:padding="10dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
 
+        <!--
         <ProgressBar
             android:id="@+id/detailsQuestProgressBar"
             android:layout_width="0dp"
@@ -60,6 +62,13 @@
             android:layout_height="wrap_content"
             android:padding="20dp"
             style="?android:attr/progressBarStyleHorizontal"/>
+        -->
+        <ImageView
+            android:id="@+id/detailsQuestProgressBar"
+            android:layout_width="225dp"
+            android:layout_gravity="center"
+            android:layout_height="125dp"
+            app:srcCompat="@drawable/progress_bar_none"/>
 
         <TextView
             android:paddingTop="16dp"
@@ -75,6 +84,32 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/snail"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <ImageView
+            android:id="@+id/turnInItemButton"
+            android:layout_gravity="center"
+            android:layout_marginLeft="160dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:onClick="turnInTapped"
+            app:srcCompat="@drawable/add_item_icon"/>
+
+        <ImageView
+            android:id="@+id/turnInItemPlus1Icon"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/green_plus1_icon"/>
     </LinearLayout>
 
 </LinearLayout>

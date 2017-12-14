@@ -1,11 +1,18 @@
 package edu.orangecoastcollege.cs273.ecoquest;
 
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * TurnInQuestActivity is the controller for the Activity where users can add
@@ -22,6 +29,23 @@ public class TurnInQuestActivity extends AppCompatActivity {
     private Animation shrinkGrowAnimation;
     private Animation spinAnimation;
     private Animation plusOneAnimation;
+
+    private int poosCollected;
+    private int buttsCollected;
+    private int coffeeCupsColleted;
+
+    // TODO: Add functionality for the demo to demonstrate what earning a badge will look like.
+    // TODO: When the user taps a button enough times, trigger the badge earned splash
+    // TODO: Use the manning.com add a book as a reference, white text, part of the text zooms in from the right, and a 2-3 second duration timer
+    private Animation badgeEarnedAnimation;
+    private Animation textZoomLeftAnimation;
+    private Animation badgeFadeInZoomLeftAnimation;
+
+    private ImageView badgeEarnedImageView;
+    private ScrollView questTurnInScrollView;
+    private TextView badgeEarnedTextView;
+    private TextView badgeNameTextView;
+    private ImageView whichBadgeUserEarnedImageView;
 
     private ImageView dogPooAddButton;
     private ImageView pooPlusOneIcon;
@@ -57,8 +81,13 @@ public class TurnInQuestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turn_in_quest);
 
+        badgeEarnedImageView = (ImageView) findViewById(R.id.badgeEarnedImageView);
+        questTurnInScrollView = (ScrollView) findViewById(R.id.questTurnInScrollView);
+        badgeEarnedTextView = (TextView) findViewById(R.id.badgeEarnedTextView);
+        badgeNameTextView = (TextView) findViewById(R.id.badgeNameTextView);
         dogPooAddButton = (ImageView) findViewById(R.id.dogPooAddButton);
         pooPlusOneIcon = (ImageView) findViewById(R.id.pooPlus1Icon);
+        whichBadgeUserEarnedImageView = (ImageView) findViewById(R.id.whichBadgeUserEarnedImageView);
 
         cigButtAddButton = (ImageView) findViewById(R.id.cigButtAddButton);
         cigPlusOneIcon = (ImageView) findViewById(R.id.cigPlus1Icon);
@@ -98,10 +127,73 @@ public class TurnInQuestActivity extends AppCompatActivity {
      */
     public void spinAnimation(View view)
     {
+        poosCollected++;
         spinAnimation = AnimationUtils.loadAnimation(this, R.anim.spin_anim);
         plusOneAnimation = AnimationUtils.loadAnimation(this, R.anim.plus_one_anim);
-        dogPooAddButton.startAnimation(spinAnimation);
-        pooPlusOneIcon.startAnimation(plusOneAnimation);
+
+        badgeEarnedAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.badge_earned_anim);
+        textZoomLeftAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.text_zoom_left_anim);
+        badgeFadeInZoomLeftAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.badge_fade_in_zoom_left_anim);
+
+        badgeEarnedImageView.getLayoutParams().width = questTurnInScrollView.getWidth();
+        badgeEarnedImageView.getLayoutParams().height = questTurnInScrollView.getHeight();
+        badgeEarnedImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        AssetManager am = this.getAssets();
+        InputStream stream;
+        Drawable image;
+        try {
+
+            switch (poosCollected) {
+                case 1:
+                    stream = am.open("meadow_muffin_knight.png");
+                    image = Drawable.createFromStream(stream, "meadow_muffin_knight.png");
+                    badgeNameTextView.setText("meadow muffin knight");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 5:
+                    // earned turd templar
+                    stream = am.open("turd_templar.png");
+                    image = Drawable.createFromStream(stream, "turd_templar.png");
+                    badgeNameTextView.setText("turd templar");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 10:
+                    // earned poopoo paladin templar
+                    stream = am.open("poopoo_paladin.png");
+                    image = Drawable.createFromStream(stream, "poopoo_paladin.png");
+                    badgeNameTextView.setText("poopoo paladin");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 25:
+                    // earned chevalier du caca
+                    stream = am.open("chevalier_du_caca.png");
+                    image = Drawable.createFromStream(stream, "chevalier_du_caca.png");
+                    badgeNameTextView.setText("chevalier du caca");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                default:
+                    dogPooAddButton.startAnimation(spinAnimation);
+                    pooPlusOneIcon.startAnimation(plusOneAnimation);
+                    break;
+            }
+        } catch (IOException e) { e.printStackTrace(); }
     }
 
     /**
@@ -114,10 +206,81 @@ public class TurnInQuestActivity extends AppCompatActivity {
      */
     public void shrinkGrowAnimation(View view)
     {
+        buttsCollected++;
         shrinkGrowAnimation = AnimationUtils.loadAnimation(this, R.anim.shrink_grow_anim);
         plusOneAnimation = AnimationUtils.loadAnimation(this, R.anim.plus_one_anim);
-        cigButtAddButton.startAnimation(shrinkGrowAnimation);
-        cigPlusOneIcon.startAnimation(plusOneAnimation);
+
+        badgeEarnedAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.badge_earned_anim);
+        textZoomLeftAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.text_zoom_left_anim);
+        badgeFadeInZoomLeftAnimation = AnimationUtils.loadAnimation(TurnInQuestActivity.this, R.anim.badge_fade_in_zoom_left_anim);
+
+        badgeEarnedImageView.getLayoutParams().width = questTurnInScrollView.getWidth();
+        badgeEarnedImageView.getLayoutParams().height = questTurnInScrollView.getHeight();
+        badgeEarnedImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        AssetManager am = this.getAssets();
+        InputStream stream;
+        Drawable image;
+        try {
+
+            switch (buttsCollected) {
+                case 5:
+                    stream = am.open("journeyman_buttcollector.png");
+                    image = Drawable.createFromStream(stream, "journeyman_buttcollector.png");
+                    badgeNameTextView.setText("journeyman butt collector");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 10:
+                    stream = am.open("squire_buttcollector.png");
+                    image = Drawable.createFromStream(stream, "squire_buttcollector.png");
+                    badgeNameTextView.setText("squire butt collector");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 25:
+                    stream = am.open("adept_buttcollector.png");
+                    image = Drawable.createFromStream(stream, "adept_buttcollector.png");
+                    badgeNameTextView.setText("adept butt collector");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 50:
+                    stream = am.open("instructor_buttcollector.png");
+                    image = Drawable.createFromStream(stream, "instructor_buttcollector.png");
+                    badgeNameTextView.setText("instructor butt collector");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                case 100:
+                    stream = am.open("master_buttcollector.png");
+                    image = Drawable.createFromStream(stream, "master_buttcollector.png");
+                    badgeNameTextView.setText("master butt collector");
+                    whichBadgeUserEarnedImageView.setImageDrawable(image);
+                    badgeEarnedImageView.startAnimation(badgeEarnedAnimation);
+                    badgeEarnedTextView.startAnimation(badgeEarnedAnimation);
+                    badgeNameTextView.startAnimation(textZoomLeftAnimation);
+                    whichBadgeUserEarnedImageView.startAnimation(badgeFadeInZoomLeftAnimation);
+                    break;
+                default:
+                    cigButtAddButton.startAnimation(shrinkGrowAnimation);
+                    cigPlusOneIcon.startAnimation(plusOneAnimation);
+                    break;
+            }
+        } catch (IOException e) { e.printStackTrace(); }
+
     }
 
     /**
